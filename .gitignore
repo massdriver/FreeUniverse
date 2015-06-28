@@ -1,0 +1,8 @@
+*.pdb
+*.suo
+Common/bin/
+Common/obj/
+Client/bin/
+Client/obj/
+Server/bin/
+Server/obj/

@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows Desktop
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeUniverse.Common", "Common\FreeUniverse.Common.csproj", "{01665438-A6C3-4A35-8591-5A254CE059BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeUniverse.Client", "Client\FreeUniverse.Client.csproj", "{4BE1539D-B97E-4BA8-AEC7-782B47C8E68F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{01665438-A6C3-4A35-8591-5A254CE059BE} = {01665438-A6C3-4A35-8591-5A254CE059BE}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeUniverse.Server", "Server\FreeUniverse.Server.csproj", "{87247AA0-65CF-43E9-9AD6-D5199D5D0B8B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{01665438-A6C3-4A35-8591-5A254CE059BE} = {01665438-A6C3-4A35-8591-5A254CE059BE}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01665438-A6C3-4A35-8591-5A254CE059BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01665438-A6C3-4A35-8591-5A254CE059BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01665438-A6C3-4A35-8591-5A254CE059BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01665438-A6C3-4A35-8591-5A254CE059BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BE1539D-B97E-4BA8-AEC7-782B47C8E68F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BE1539D-B97E-4BA8-AEC7-782B47C8E68F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BE1539D-B97E-4BA8-AEC7-782B47C8E68F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BE1539D-B97E-4BA8-AEC7-782B47C8E68F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87247AA0-65CF-43E9-9AD6-D5199D5D0B8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87247AA0-65CF-43E9-9AD6-D5199D5D0B8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87247AA0-65CF-43E9-9AD6-D5199D5D0B8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87247AA0-65CF-43E9-9AD6-D5199D5D0B8B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

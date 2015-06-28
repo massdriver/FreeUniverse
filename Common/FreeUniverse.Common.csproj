@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{01665438-A6C3-4A35-8591-5A254CE059BE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FreeUniverse.Common</RootNamespace>
+    <AssemblyName>FreeUniverse.Common</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Unity\FreeUniverse\Assets\Plugins\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="LibNoise">
+      <HintPath>C:\Development\FreeUniverseTechdemoSrc\ExternalAssemblies\LibNoise.dll</HintPath>
+    </Reference>
+    <Reference Include="Lidgren.Network">
+      <HintPath>C:\Development\FreeUniverseTechdemoSrc\ExternalAssemblies\Lidgren.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExternalDepedencies\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEditor">
+      <HintPath>..\..\..\..\Soft\unity5\Editor\Data\Managed\UnityEditor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\Soft\unity5\Editor\Data\Managed\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\Soft\unity5\Editor\Data\UnityExtensions\Unity\GUISystem\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Arch\ArchConst.cs" />
+    <Compile Include="Arch\ArchFaction.cs" />
+    <Compile Include="Arch\ArchObject.cs" />
+    <Compile Include="Assist.cs" />
+    <Compile Include="Common\PlayerAccountInfo.cs" />
+    <Compile Include="Common\UI\ViewControllerBase.cs" />
+    <Compile Include="Common\UI\ViewControllerLogin.cs" />
+    <Compile Include="Hash.cs" />
+    <Compile Include="IBaseObject.cs" />
+    <Compile Include="INIReader.cs" />
+    <Compile Include="IntegerRandom.cs" />
+    <Compile Include="IServerObjectFactory.cs" />
+    <Compile Include="Market\MarketContract.cs" />
+    <Compile Include="Market\MarketItem.cs" />
+    <Compile Include="Market\MarketStock.cs" />
+    <Compile Include="Network\Messages\MsgReplyCreateAccount.cs" />
+    <Compile Include="Network\NetworkMessageFactory.cs" />
+    <Compile Include="Network\Messages\MsgGenericValues.cs" />
+    <Compile Include="Network\Messages\MsgRequestCreateAccount.cs" />
+    <Compile Include="Network\NetworkClient.cs" />
+    <Compile Include="Network\NetworkClientInfo.cs" />
+    <Compile Include="Network\NetworkMessage.cs" />
+    <Compile Include="Network\NetworkMessageHandler.cs" />
+    <Compile Include="Network\NetworkMessageType.cs" />
+    <Compile Include="Network\NetworkServer.cs" />
+    <Compile Include="Procedural\Galaxy\ProceduralGalaxyGenerator.cs" />
+    <Compile Include="Procedural\ParameterRange.cs" />
+    <Compile Include="Procedural\CubemapGenerator.cs" />
+    <Compile Include="Procedural\StarSystemNameGenerator.cs" />
+    <Compile Include="Procedural\System\ISystemGenerator.cs" />
+    <Compile Include="Procedural\System\SimpleSystemGenerator.cs" />
+    <Compile Include="Procedural\System\SystemGeneratorParams.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Arch\ArchLoaderPrefab.cs" />
+    <Compile Include="Unity\DescriptorSolar.cs" />
+    <Compile Include="Unity\GalaxyGenerator.cs" />
+    <Compile Include="Unity\MovableCamera.cs" />
+    <Compile Include="ValueMap.cs" />
+    <Compile Include="ServerObjectFactoryLoader.cs" />
+    <Compile Include="uidkey.cs" />
+    <Compile Include="Common\UI\Console.cs" />
+    <Compile Include="Common\UI\External.cs" />
+    <Compile Include="Unity\FactionDescriptor.cs" />
+    <Compile Include="Unity\EditableObjectDescriptor.cs" />
+    <Compile Include="Unity\SystemExporter.cs" />
+    <Compile Include="Unity\SystemRoot.cs" />
+    <Compile Include="Unity\SystemStaticSolar.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="World\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
