@@ -77,6 +77,7 @@
     <Compile Include="Assist.cs" />
     <Compile Include="Common\PlayerAccountInfo.cs" />
     <Compile Include="Common\UI\ViewControllerBase.cs" />
+    <Compile Include="Common\UI\ViewControllerCreateAccount.cs" />
     <Compile Include="Common\UI\ViewControllerLogin.cs" />
     <Compile Include="Hash.cs" />
     <Compile Include="IBaseObject.cs" />

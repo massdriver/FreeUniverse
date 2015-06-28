@@ -16,18 +16,24 @@ namespace FreeUniverse.Common.Common.UI
         {
             get
             {
+                if (panelView == null)
+                    return false;
+
                 return panelView.activeSelf;
             }
 
             set
             {
+                if (panelView == null)
+                    return;
+
                 panelView.SetActive(value);
             }
         }
 
         public ViewControllerBase()
         {
-
+            visible = false;
         }
 
         public virtual void Update(float dt)

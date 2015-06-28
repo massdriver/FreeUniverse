@@ -7,10 +7,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FreeUniverse.Common.Network.Messages;
 
 namespace FreeUniverse
 {
-    public sealed class GameClient : IBaseObject 
+    public sealed class GameClient :
+        IBaseObject,
+        IViewControllerLoginDelegate,
+        IViewControllerCreateAccountDelegate
     {
         private NetworkClient loginClient { get; set; }
         private LoginServerDelegate loginDelegate { get; set; }
@@ -54,29 +58,56 @@ namespace FreeUniverse
         }
 
         private ViewControllerLogin viewControllerLogin { get; set; }
+        private ViewControllerCreateAccount viewControllerCreateAccount { get; set; }
 
         private void LoadViewControllers()
         {
             viewControllerLogin = new ViewControllerLogin();
+            viewControllerLogin.controllerDelegate = this;
             viewControllerLogin.visible = true;
+
+            viewControllerCreateAccount = new ViewControllerCreateAccount();
+            viewControllerCreateAccount.controllerDelegate = this;
+            viewControllerCreateAccount.visible = false;
         }
 
         private class LoginServerDelegate : INetworkClientDelegate
         {
             private GameClient client { get; set; }
 
+            public bool isConnected { get; set; }
+
+            public enum Status
+            {
+                ConnectedNotAuthorized,
+                ConnectedAndAuthorized, 
+                Diconnected
+            }
+
+            public Status status { get; set; }
+
             public LoginServerDelegate(GameClient client)
             {
+                this.status = Status.Diconnected;
                 this.client = client;
+                this.isConnected = false;
             }
 
             public void OnNetworkClientConnect(NetworkClient client, int result)
             {
+                isConnected = true;
+
+                this.status = Status.ConnectedNotAuthorized;
+
                 ClientPluginController.OnClientPluginEvent(ClientPluginEvent.LoginServerConnect, result);
             }
 
             public void OnNetworkClientDisconnect(NetworkClient client, int reason)
             {
+                isConnected = false;
+
+                this.status = Status.Diconnected;
+
                 ClientPluginController.OnClientPluginEvent(ClientPluginEvent.LoginServerDisconnect, reason);
             }
 
@@ -85,6 +116,29 @@ namespace FreeUniverse
                 // MH: or is it?
                 //ClientPluginController.OnClientPluginEvent(ClientPluginEvent.LoginServerIncomingMessage, message);
             }
+        }
+
+        private static readonly string LOGIN_SERVER_IP = "127.0.0.1";
+        private static readonly int LOGIN_SERVER_PORT = 16890;
+
+        public void OnViewControllerLoginAction(ViewControllerLogin controller, string user, string password)
+        {
+            controller.visible = false;
+
+            if (loginDelegate.isConnected)
+                return;
+
+            if (loginDelegate.status != LoginServerDelegate.Status.Diconnected)
+                return;
+
+            loginClient.Connect(LOGIN_SERVER_IP, LOGIN_SERVER_PORT);
+
+            
+        }
+
+        public void OnViewControllerCreateAccountAction(ViewControllerCreateAccount controller, string email, string password)
+        {
+            //
         }
     }
 }

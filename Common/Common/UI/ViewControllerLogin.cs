@@ -23,7 +23,7 @@ namespace FreeUniverse.Common.Common.UI
         public ViewControllerLogin()
         {
             panelView = Assist.LoadUI(PANEL_PREFAB_PATH);
-            panelView.SetActive(false);
+            visible = false;
 
             userInputField = Assist.FindUI<InputField>(panelView, "user_input");
             passwordInputField = Assist.FindUI<InputField>(panelView, "password_input");
@@ -38,9 +38,21 @@ namespace FreeUniverse.Common.Common.UI
             base.Update(dt);
         }
 
+        private bool ValidateInput()
+        {
+            return false;
+        }
+
         private void OnLoginButtonPressed()
         {
-            Debug.Log("press");
+            if (!ValidateInput())
+                return;
+
+            if (controllerDelegate != null)
+            {
+                controllerDelegate.OnViewControllerLoginAction(this, userInputField.text, passwordInputField.text);
+            }
+                
         }
     }
 }
