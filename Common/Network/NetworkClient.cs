@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace FreeUniverse.Common.Network
 {
@@ -38,9 +39,9 @@ namespace FreeUniverse.Common.Network
             client.Shutdown("bye");
         }
 
-        public void Connect(string ip, int port)
+        public NetConnection Connect(string ip, int port)
         {
-            client.Connect(ip, port);
+            return client.Connect(ip, port);
         }
 
         public void Disconnect()
@@ -109,11 +110,11 @@ namespace FreeUniverse.Common.Network
             }
         }
 
-        public void Send(NetworkMessage message, NetDeliveryMethod deliveryType)
+        public NetSendResult Send(NetworkMessage message, NetDeliveryMethod deliveryType)
         {
             NetOutgoingMessage msg = client.CreateMessage();
             message.Write(msg);
-            client.SendMessage(msg, deliveryType);
+            return client.SendMessage(msg, deliveryType);
         }
     }
 }

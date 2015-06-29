@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FreeUniverse.Common.Network.Messages;
+using UnityEngine;
+using Lidgren.Network;
 
 namespace FreeUniverse
 {
@@ -29,7 +31,7 @@ namespace FreeUniverse
 
         public void Init()
         {
-            //InitNetworkClient();
+            InitNetworkClient();
             LoadViewControllers();
         }
 
@@ -39,13 +41,23 @@ namespace FreeUniverse
                 loginClient.Stop();
         }
 
-        public void Update(float time)
+        public void Update(float dt)
         {
             if (loginClient != null)
+            {
                 loginClient.Update();
 
+                if (netConnection != null)
+                {
+                    Debug.Log(netConnection.Status.ToString() + ", " + netConnection.Statistics.ToString());
+                }
+            }
+
             if (viewControllerLogin != null)
-                viewControllerLogin.Update(time);
+                viewControllerLogin.Update(dt);
+
+            if (viewControllerCreateAccount != null)
+                viewControllerCreateAccount.Update(dt);
             
         }
 
@@ -53,7 +65,6 @@ namespace FreeUniverse
         {
             loginDelegate = new LoginServerDelegate(this);
             loginClient = new NetworkClient();
-            loginClient.clientDelegate = loginDelegate;
             loginClient.Start();
         }
 
@@ -64,11 +75,11 @@ namespace FreeUniverse
         {
             viewControllerLogin = new ViewControllerLogin();
             viewControllerLogin.controllerDelegate = this;
-            viewControllerLogin.visible = true;
+            viewControllerLogin.visible = false;
 
             viewControllerCreateAccount = new ViewControllerCreateAccount();
             viewControllerCreateAccount.controllerDelegate = this;
-            viewControllerCreateAccount.visible = false;
+            viewControllerCreateAccount.visible = true;
         }
 
         private class LoginServerDelegate : INetworkClientDelegate
@@ -121,6 +132,23 @@ namespace FreeUniverse
         private static readonly string LOGIN_SERVER_IP = "127.0.0.1";
         private static readonly int LOGIN_SERVER_PORT = 16890;
 
+        private struct LoginServerInfo
+        {
+            public string ip { get; set; }
+            public int port { get; set; }
+
+            public LoginServerInfo(string ip, int port) : this()
+            {
+                this.ip = ip;
+                this.port = port;
+            }
+        }
+
+        private LoginServerInfo GetLoginServerConnectionInfo()
+        {
+            return new LoginServerInfo(LOGIN_SERVER_IP, LOGIN_SERVER_PORT);
+        }
+
         public void OnViewControllerLoginAction(ViewControllerLogin controller, string user, string password)
         {
             controller.visible = false;
@@ -131,14 +159,84 @@ namespace FreeUniverse
             if (loginDelegate.status != LoginServerDelegate.Status.Diconnected)
                 return;
 
-            loginClient.Connect(LOGIN_SERVER_IP, LOGIN_SERVER_PORT);
+            LoginServerInfo info = GetLoginServerConnectionInfo();
+
+            loginClient.Connect(info.ip, info.port);
 
             
         }
 
+        private class CreateAccountDelegate : INetworkClientDelegate
+        {
+            private GameClient client { get; set; }
+
+            public CreateAccountDelegate(GameClient client)
+            {
+                this.client = client;
+            }
+
+            public void OnNetworkClientConnect(NetworkClient netClient, int result)
+            {
+                Debug.Log("CreateAccountDelegate: connected to login server");
+
+                MsgRequestCreateAccount msg = new MsgRequestCreateAccount();
+                msg[MsgRequestCreateAccount.FIELD_EMAIL] = client.data[0];
+                msg[MsgRequestCreateAccount.FIELD_PASSWORD] = client.data[1];
+
+                netClient.Send(msg, Lidgren.Network.NetDeliveryMethod.ReliableOrdered);
+
+                Debug.Log("CreateAccountDelegate: request sent");
+            }
+
+            public void OnNetworkClientDisconnect(NetworkClient client, int reason)
+            {
+                
+            }
+
+            public void OnNetworkClientMessage(NetworkClient netClient, NetworkMessage message)
+            {
+                if (message.type != NetworkMessageType.ReplyCreateAccount)
+                    return;
+
+                MsgReplyCreateAccount msg = message as MsgReplyCreateAccount;
+
+                bool result = msg[MsgReplyCreateAccount.FIELD_RESULT] == MsgReplyCreateAccount.ACCOUNT_CREATED;
+
+                Debug.Log("CreateAccountDelegate: account result=" + result.ToString());
+
+                netClient.clientDelegate = null;
+                netClient.Disconnect();
+            }
+        }
+
+        private bool CanCreateAccount()
+        {
+            return viewControllerCreateAccount.visible ;
+        }
+
+        private string[] data { get; set; }
+
+        private NetConnection netConnection { get; set; }
+
         public void OnViewControllerCreateAccountAction(ViewControllerCreateAccount controller, string email, string password)
         {
-            //
+            Debug.Log("GameClient: trying to create account");
+
+            if (!CanCreateAccount())
+                return;
+
+            LoginServerInfo info = GetLoginServerConnectionInfo();
+
+            loginClient.clientDelegate = new CreateAccountDelegate(this);
+            this.netConnection = loginClient.Connect(info.ip, info.port);
+
+            data = new string[2];
+            data[0] = email;
+            data[1] = password;
+
+            viewControllerCreateAccount.visible = false;
+
+            Debug.Log("GameClient: ok");
         }
     }
 }

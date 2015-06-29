@@ -14,17 +14,19 @@ namespace FreeUniverse.Server.Account
 
         public ClientAccountDatabase(FreeUniverseServiceConfiguration config)
         {
+            Debug.Log("ClientAccountDatabase: dir=" + config.accountDatabaseDir + ", pass=" + config.accountDatabasePassword);
+
             accounts = new Database<ClientAccount>(config.accountDatabaseDir, config.accountDatabasePassword);
         }
 
-        public bool CreateNewAccount(string userName, string password)
+        public bool CreateNewAccount(string email, string password)
         {
             ClientAccount newAccount = null;
 
-            if (accounts.Exists(userName, out newAccount))
+            if (accounts.Exists(email, out newAccount))
                 return false;
 
-            newAccount = new ClientAccount(userName, password);
+            newAccount = new ClientAccount(email, password);
 
             accounts.Store(newAccount, DatabaseLocationType.DiskOnly);
 
@@ -54,7 +56,7 @@ namespace FreeUniverse.Server.Account
             if (!accounts.Exists(userName, out acc))
                 return null;
 
-            if (acc.userPassword.CompareTo(password) != 0)
+            if (acc.password.CompareTo(password) != 0)
                 return null;
 
             acc.OnLogin();

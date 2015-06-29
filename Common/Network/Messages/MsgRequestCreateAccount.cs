@@ -12,7 +12,7 @@ namespace FreeUniverse.Common.Network.Messages
             type = NetworkMessageType.RequestCreateAccount;
         }
 
-        public static readonly string FIELD_USERNAME = "user";
+        public static readonly string FIELD_EMAIL = "user";
         public static readonly string FIELD_PASSWORD = "pass";
     }
 }

@@ -14,21 +14,21 @@ namespace FreeUniverse.Server.Account
         public uidkey guid { get; private set; }
         public DateTime lastLogin { get; private set; }
         public DateTime createDate { get; private set; }
-        public string userName { get; private set; }
-        public string userPassword { get; private set; }
+        public string email { get; private set; }
+        public string password { get; private set; }
 
         public ClientAccount()
         {
 
         }
 
-        public ClientAccount(string name, string password)
+        public ClientAccount(string email, string password)
         {
-            this.userName = name;
-            this.userPassword = password;
+            this.email = email;
+            this.password = password;
             this.createDate = DateTime.Now;
             this.lastLogin = DateTime.Now;
-            this.guid = new uidkey(this.userName + this.createDate.ToBinary().ToString());
+            this.guid = new uidkey(this.email + this.createDate.ToBinary().ToString());
         }
 
         public override void Read(System.IO.BinaryReader reader)
@@ -39,8 +39,8 @@ namespace FreeUniverse.Server.Account
 
             lastLogin = new DateTime(reader.ReadInt64());
             createDate = new DateTime(reader.ReadInt64());
-            userName = reader.ReadString();
-            userPassword = reader.ReadString();
+            email = reader.ReadString();
+            password = reader.ReadString();
         }
 
         public override void Write(System.IO.BinaryWriter writer)
@@ -50,8 +50,8 @@ namespace FreeUniverse.Server.Account
             guid.Write(writer);
             writer.Write(lastLogin.ToBinary());
             writer.Write(createDate.ToBinary());
-            writer.Write(userName);
-            writer.Write(userPassword);
+            writer.Write(email);
+            writer.Write(password);
         }
 
         public void OnLogin()

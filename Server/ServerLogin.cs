@@ -17,6 +17,8 @@ namespace FreeUniverse.Server
         public ServerLogin(FreeUniverseServiceConfiguration config) : base(config)
         {
             accountDatabase = new ClientAccountDatabase(config);
+
+            server.serverDelegate = this;
         }
 
         private void HandleRequestAccountLogin(NetworkMessage msg)
@@ -32,12 +34,16 @@ namespace FreeUniverse.Server
         /* Create account */
         private void HandleRequestCreateAccount(NetworkMessage msg)
         {
+            
+
             MsgRequestCreateAccount message = msg as MsgRequestCreateAccount;
 
-            string user = message[MsgRequestCreateAccount.FIELD_USERNAME];
+            string email = message[MsgRequestCreateAccount.FIELD_EMAIL];
             string pass = message[MsgRequestCreateAccount.FIELD_PASSWORD];
 
-            bool result = accountDatabase.CreateNewAccount(user, pass);
+            Debug.Log("Login sever: request create account, email=" + email + ", pass=" + pass);
+
+            bool result = accountDatabase.CreateNewAccount(email, pass);
 
             MsgReplyCreateAccount reply = new MsgReplyCreateAccount();
 
@@ -81,6 +87,8 @@ namespace FreeUniverse.Server
         public override void OnNetworkServerClientConnected(NetworkServer server, int client)
         {
             base.OnNetworkServerClientConnected(server, client);
+
+            Debug.Log("incoming connection");
         }
 
         public override void OnNetworkServerClientDisconnected(NetworkServer server, int client)

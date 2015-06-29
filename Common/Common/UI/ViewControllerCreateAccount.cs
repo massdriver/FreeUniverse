@@ -39,7 +39,7 @@ namespace FreeUniverse.Common.Common.UI
 
         private bool ValidateInput()
         {
-            return false;
+            return email.text.Length > 5 && password.text.Length > 6;
         }
 
         private void OnCreateButtonPressed()

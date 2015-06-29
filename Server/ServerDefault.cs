@@ -20,6 +20,7 @@ namespace FreeUniverse.Server
 
             msgHandler = new NetworkMessageHandler();
             server = new NetworkServer();
+            server.serverDelegate = this;
 
             SetupMessageHandlers();
         }

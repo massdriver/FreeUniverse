@@ -27,7 +27,7 @@ namespace FreeUniverse.Client
             gameClient = new GameClient();
             gameClient.Init();
 
-            //StartServers();
+            StartServers();
         }
 
         void Update()

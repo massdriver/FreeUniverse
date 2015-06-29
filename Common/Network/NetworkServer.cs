@@ -58,7 +58,6 @@ namespace FreeUniverse.Common.Network
 
             this.config = new NetPeerConfiguration("FreeUniverse");
             this.config.Port = port;
-            this.config.ConnectionTimeout = 15.0f;
             this.config.MaximumConnections = maxClients;
 
             this.server = new NetServer(config);
@@ -94,7 +93,7 @@ namespace FreeUniverse.Common.Network
         {
             NetIncomingMessage im;
             while ((im = server.ReadMessage()) != null)
-            {
+            {   
                 switch (im.MessageType)
                 {
                     case NetIncomingMessageType.DebugMessage:
