@@ -7,7 +7,7 @@
     <ProjectGuid>{01665438-A6C3-4A35-8591-5A254CE059BE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FreeUniverse.Common</RootNamespace>
+    <RootNamespace>FreeUniverse</RootNamespace>
     <AssemblyName>FreeUniverse.Common</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

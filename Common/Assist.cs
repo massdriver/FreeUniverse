@@ -8,8 +8,8 @@ namespace FreeUniverse.Common
 {
     public class Assist
     {
-        // Find UI component in GameObject hierarchy
-        public static T FindUI<T>(GameObject root, string child) where T : Component
+        // Find component in GameObject hierarchy by type
+        public static T FindComponent<T>(GameObject root, string child) where T : Component
         {
             Transform childTransform = root.transform.Find(child);
 
@@ -19,17 +19,18 @@ namespace FreeUniverse.Common
             return childTransform.GetComponent<T>();
         }
 
-
         public static GameObject LoadUI(string prefab)
         {
             GameObject e = UnityEngine.Object.Instantiate(Resources.Load(prefab)) as GameObject;
 
-            e.gameObject.transform.SetParent(FreeUniverse.Common.UI.External.canvas.transform, false); // MH: this is required to make UI visible with correct transform
+            // MH: this is required to make UI visible with correct transform
+            // make sure that canvas object is properly set before usage
+            e.gameObject.transform.SetParent(FreeUniverse.Common.UI.External.canvas.transform, false);
 
             return e;
         }
 
-        public static T CreateInstanceFromAssembly<T>(string assemblyName, string typeName) where T: class
+        public static T CreateInstanceFromAssembly<T>(string assemblyName, string typeName)
         {
             Assembly assembly = Assembly.Load(assemblyName);
 
@@ -41,7 +42,7 @@ namespace FreeUniverse.Common
             if (type == null)
                 return default(T);
 
-            return Activator.CreateInstance(type) as T;
+            return (T)Activator.CreateInstance(type);
         }
     }
 }

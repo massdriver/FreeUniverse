@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace FreeUniverse.Common.Common
+namespace FreeUniverse.Common
 {
     public sealed class PlayerAccountInfo
     {

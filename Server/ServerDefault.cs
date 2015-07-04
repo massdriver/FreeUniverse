@@ -7,7 +7,9 @@ using System.Text;
 
 namespace FreeUniverse.Server
 {
-    public class ServerDefault : IBaseObject, INetworkServerDelegate
+    public class ServerDefault :
+        IBaseObject,
+        INetworkServerDelegate
     {
         protected NetworkMessageHandler msgHandler { get; set; }
         protected FreeUniverseServiceConfiguration configuration { get; set; }
@@ -26,7 +28,7 @@ namespace FreeUniverse.Server
 
         protected virtual void SetupMessageHandlers()
         {
-
+            
         }
 
         public virtual void Init()

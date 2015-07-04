@@ -31,8 +31,8 @@ namespace FreeUniverse.Common.UI
             invalidState = true;
             messages = new List<string>();
             consolePanel = Assist.LoadUI(UI_PREFAB);
-            inputField = Assist.FindUI<InputField>(consolePanel, UI_INPUT_FIELD);
-            textField = Assist.FindUI<Text>(consolePanel, UI_TEXT_OUTPUT);
+            inputField = Assist.FindComponent<InputField>(consolePanel, UI_INPUT_FIELD);
+            textField = Assist.FindComponent<Text>(consolePanel, UI_TEXT_OUTPUT);
         }
 
         public void Update()

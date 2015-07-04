@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace FreeUniverse.Common.Common.UI
+namespace FreeUniverse.Common.UI
 {
     public interface IViewControllerLoginDelegate
     {
@@ -25,9 +25,9 @@ namespace FreeUniverse.Common.Common.UI
             panelView = Assist.LoadUI(PANEL_PREFAB_PATH);
             visible = false;
 
-            userInputField = Assist.FindUI<InputField>(panelView, "user_input");
-            passwordInputField = Assist.FindUI<InputField>(panelView, "password_input");
-            loginButton = Assist.FindUI<Button>(panelView, "login_button");
+            userInputField = Assist.FindComponent<InputField>(panelView, "user_input");
+            passwordInputField = Assist.FindComponent<InputField>(panelView, "password_input");
+            loginButton = Assist.FindComponent<Button>(panelView, "login_button");
 
             loginButton.onClick = new Button.ButtonClickedEvent();
             loginButton.onClick.AddListener(this.OnLoginButtonPressed);

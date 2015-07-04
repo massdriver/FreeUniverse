@@ -34,7 +34,7 @@ namespace FreeUniverse.Server
         /* Create account */
         private void HandleRequestCreateAccount(NetworkMessage msg)
         {
-            MsgRequestCreateAccount message = msg as MsgRequestCreateAccount;
+            MsgRequestCreateAccount message = (MsgRequestCreateAccount)msg;
 
             string email = message[MsgRequestCreateAccount.FIELD_EMAIL];
             string pass = message[MsgRequestCreateAccount.FIELD_PASSWORD];

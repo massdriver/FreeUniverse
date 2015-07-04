@@ -1,6 +1,5 @@
 ﻿using FreeUniverse.Common;
-using FreeUniverse.Common.Common;
-using FreeUniverse.Common.Common.UI;
+using FreeUniverse.Common.UI;
 using FreeUniverse.Common.Network;
 using FreeUniverse.Plugin;
 using System;
@@ -208,8 +207,6 @@ namespace FreeUniverse
 
         private string[] data { get; set; }
 
-        private NetConnection netConnection { get; set; }
-
         public void OnViewControllerCreateAccountAction(ViewControllerCreateAccount controller, string email, string password)
         {
             if (!CanCreateAccount())
@@ -218,13 +215,15 @@ namespace FreeUniverse
             LoginServerInfo info = GetLoginServerConnectionInfo();
 
             loginClient.clientDelegate = new CreateAccountDelegate(this);
-            this.netConnection = loginClient.Connect(info.ip, info.port);
+            loginClient.Connect(info.ip, info.port);
 
             data = new string[2];
             data[0] = email;
             data[1] = password;
 
             viewControllerCreateAccount.visible = false;
+
+            // show wait form
         }
     }
 }

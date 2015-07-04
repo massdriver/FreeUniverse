@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine.UI;
 
-namespace FreeUniverse.Common.Common.UI
+namespace FreeUniverse.Common.UI
 {
     public interface IViewControllerCreateAccountDelegate
     {
@@ -24,9 +24,9 @@ namespace FreeUniverse.Common.Common.UI
             panelView = Assist.LoadUI(PANEL_PREFAB_PATH);
             visible = false;
 
-            email = Assist.FindUI<InputField>(panelView, "email");
-            password = Assist.FindUI<InputField>(panelView, "password");
-            createButton = Assist.FindUI<Button>(panelView, "create_button");
+            email = Assist.FindComponent<InputField>(panelView, "email");
+            password = Assist.FindComponent<InputField>(panelView, "password");
+            createButton = Assist.FindComponent<Button>(panelView, "create_button");
 
             createButton.onClick = new Button.ButtonClickedEvent();
             createButton.onClick.AddListener(this.OnCreateButtonPressed);
