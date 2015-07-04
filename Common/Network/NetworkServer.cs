@@ -63,14 +63,11 @@ namespace FreeUniverse.Common.Network
             this.server = new NetServer(config);
 
             this.server.Start();
-
-            Debug.Log("network server started, status=" + server.Status.ToString());
         }
 
         public void Stop()
         {
             server.Shutdown(null);
-            Debug.Log("network server stopped, status=" + server.Status.ToString());
             server = null;
         }
 
@@ -93,7 +90,8 @@ namespace FreeUniverse.Common.Network
         {
             NetIncomingMessage im;
             while ((im = server.ReadMessage()) != null)
-            {   
+            {
+
                 switch (im.MessageType)
                 {
                     case NetIncomingMessageType.DebugMessage:

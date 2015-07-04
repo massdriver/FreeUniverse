@@ -36,6 +36,7 @@ namespace FreeUniverse.Common.Network
 
         public void Stop()
         {
+
             client.Shutdown("bye");
         }
 
@@ -49,17 +50,12 @@ namespace FreeUniverse.Common.Network
             client.Disconnect("bye");
         }
 
-        public bool IsConnected()
-        {
-            return client.ConnectionStatus == NetConnectionStatus.Connected;
-        }
-
         public void Update()
         {
             if (client == null)
-                return;
+                throw new Exception("net client object is null");
 
-            NetIncomingMessage msg;
+            NetIncomingMessage msg = null;
 
             while ((msg = client.ReadMessage()) != null)
             {

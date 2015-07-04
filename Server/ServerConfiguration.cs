@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace FreeUniverse
 {
-    internal class FreeUniverseServiceConfiguration
+    public sealed class FreeUniverseServiceConfiguration
     {
         public string accountDatabaseDir { get; private set; }
         public string accountDatabasePassword { get; private set; }

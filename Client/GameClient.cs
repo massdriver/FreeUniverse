@@ -47,10 +47,10 @@ namespace FreeUniverse
             {
                 loginClient.Update();
 
-                if (netConnection != null)
-                {
-                    Debug.Log(netConnection.Status.ToString() + ", " + netConnection.Statistics.ToString());
-                }
+                //if (netConnection != null)
+                //{
+                //    Debug.Log(netConnection.Status.ToString() + ", " + netConnection.Statistics.ToString());
+                //}
             }
 
             if (viewControllerLogin != null)
@@ -162,8 +162,6 @@ namespace FreeUniverse
             LoginServerInfo info = GetLoginServerConnectionInfo();
 
             loginClient.Connect(info.ip, info.port);
-
-            
         }
 
         private class CreateAccountDelegate : INetworkClientDelegate
@@ -177,15 +175,11 @@ namespace FreeUniverse
 
             public void OnNetworkClientConnect(NetworkClient netClient, int result)
             {
-                Debug.Log("CreateAccountDelegate: connected to login server");
-
                 MsgRequestCreateAccount msg = new MsgRequestCreateAccount();
                 msg[MsgRequestCreateAccount.FIELD_EMAIL] = client.data[0];
                 msg[MsgRequestCreateAccount.FIELD_PASSWORD] = client.data[1];
 
                 netClient.Send(msg, Lidgren.Network.NetDeliveryMethod.ReliableOrdered);
-
-                Debug.Log("CreateAccountDelegate: request sent");
             }
 
             public void OnNetworkClientDisconnect(NetworkClient client, int reason)
@@ -201,8 +195,6 @@ namespace FreeUniverse
                 MsgReplyCreateAccount msg = message as MsgReplyCreateAccount;
 
                 bool result = msg[MsgReplyCreateAccount.FIELD_RESULT] == MsgReplyCreateAccount.ACCOUNT_CREATED;
-
-                Debug.Log("CreateAccountDelegate: account result=" + result.ToString());
 
                 netClient.clientDelegate = null;
                 netClient.Disconnect();
@@ -220,8 +212,6 @@ namespace FreeUniverse
 
         public void OnViewControllerCreateAccountAction(ViewControllerCreateAccount controller, string email, string password)
         {
-            Debug.Log("GameClient: trying to create account");
-
             if (!CanCreateAccount())
                 return;
 
@@ -235,8 +225,6 @@ namespace FreeUniverse
             data[1] = password;
 
             viewControllerCreateAccount.visible = false;
-
-            Debug.Log("GameClient: ok");
         }
     }
 }

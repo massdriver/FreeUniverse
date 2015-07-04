@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FreeUniverse.Common.Network
 {
-    public class NetworkMessageHandler
+    public sealed class NetworkMessageHandler
     {
         public delegate void NetMsgDelegate(NetworkMessage msg);
 

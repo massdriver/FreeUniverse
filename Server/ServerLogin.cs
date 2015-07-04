@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace FreeUniverse.Server
 {
-    internal class ServerLogin : ServerDefault
+    public sealed class ServerLogin : ServerDefault
     {
         private ClientAccountDatabase accountDatabase { get; set; }
 
@@ -34,14 +34,10 @@ namespace FreeUniverse.Server
         /* Create account */
         private void HandleRequestCreateAccount(NetworkMessage msg)
         {
-            
-
             MsgRequestCreateAccount message = msg as MsgRequestCreateAccount;
 
             string email = message[MsgRequestCreateAccount.FIELD_EMAIL];
             string pass = message[MsgRequestCreateAccount.FIELD_PASSWORD];
-
-            Debug.Log("Login sever: request create account, email=" + email + ", pass=" + pass);
 
             bool result = accountDatabase.CreateNewAccount(email, pass);
 
@@ -59,7 +55,7 @@ namespace FreeUniverse.Server
         {
             base.SetupMessageHandlers();
 
-            msgHandler[NetworkMessageType.ReplyCreateAccount] = HandleRequestCreateAccount;
+            msgHandler[NetworkMessageType.RequestCreateAccount] = HandleRequestCreateAccount;
             msgHandler[NetworkMessageType.RequestAccountLogin] = HandleRequestAccountLogin;
             msgHandler[NetworkMessageType.RequestAccountLogout] = HandleRequestAccountLogout;
         }
@@ -68,7 +64,7 @@ namespace FreeUniverse.Server
         {
             base.Init();
             Debug.Log("initializing login server, maxClients=" + this.configuration.maxClients + ", port=" + this.configuration.loginServerPort);
-            server.Start(this.configuration.maxClients, this.configuration.loginServerPort);
+            server.Start(this.configuration.loginServerPort, this.configuration.maxClients );
         }
 
         public override void Release()
@@ -87,8 +83,6 @@ namespace FreeUniverse.Server
         public override void OnNetworkServerClientConnected(NetworkServer server, int client)
         {
             base.OnNetworkServerClientConnected(server, client);
-
-            Debug.Log("incoming connection");
         }
 
         public override void OnNetworkServerClientDisconnected(NetworkServer server, int client)

@@ -22,7 +22,7 @@ namespace FreeUniverse.Server.Account
 
         }
 
-        public ClientAccount(string email, string password)
+        public ClientAccount(string email, string password) : base(email)
         {
             this.email = email;
             this.password = password;

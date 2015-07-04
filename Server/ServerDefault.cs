@@ -7,11 +7,10 @@ using System.Text;
 
 namespace FreeUniverse.Server
 {
-    internal class ServerDefault : IBaseObject, INetworkServerDelegate
+    public class ServerDefault : IBaseObject, INetworkServerDelegate
     {
         protected NetworkMessageHandler msgHandler { get; set; }
         protected FreeUniverseServiceConfiguration configuration { get; set; }
-
         protected NetworkServer server { get; set; }
 
         public ServerDefault(FreeUniverseServiceConfiguration configuration)
