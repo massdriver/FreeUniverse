@@ -29,6 +29,18 @@ namespace FreeUniverse.Common.Unity
     public class UITableViewCell : MonoBehaviour
     {
         public int row { get; set; } // MH: this is set before UITableViewDataProvider.SetupTableViewCell is called
+
+        public Button selectionButton { get; set; }
+
+        public T GetElement<T>(string nickname) where T : Component
+        {
+            Transform childTransform = gameObject.transform.Find(nickname);
+
+            if (childTransform == null)
+                return null;
+
+            return childTransform.GetComponent<T>();
+        }
     }
 
     // MH: attach this script to panel that should be a table view
@@ -44,6 +56,7 @@ namespace FreeUniverse.Common.Unity
         private ScrollRect scrollRect { get; set; }
         private List<UITableViewCell> cells { get; set; }
         private GameObject contentHolder { get; set; } // this is where cells are put, its a scroll rect content object
+        private Scrollbar tableVerticalScrollBar { get; set; }
 
         public UITableView()
         {
@@ -82,29 +95,43 @@ namespace FreeUniverse.Common.Unity
             UITableViewParameters parameters = tableViewDataProvider.OnTableViewGetParameters(this);
 
             // Add mask
-            if( mask == null )
+            if (mask == null)
                 mask = gameObject.AddComponent<Mask>();
 
+            float contentHeight = parameters.rows * cellReference.GetComponent<RectTransform>().rect.height;
+
             // Add scroll rect with content game object
-            if( scrollRect == null )
+            if (scrollRect == null)
             {
                 scrollRect = gameObject.AddComponent<ScrollRect>();
                 scrollRect.horizontal = false;
-                
+
                 contentHolder = new GameObject();
                 contentHolder.AddComponent<RectTransform>();
 
-                //contentHolder.GetComponent<RectTransform>().
-                //contentHolder.GetComponent<RectTransform>().rect.height = parameters.rows * cellReference.GetComponent<RectTransform>().rect.height;
+                contentHolder.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, contentHeight);
                 contentHolder.transform.SetParent(gameObject.transform, false);
-                
+
                 scrollRect.content = contentHolder.GetComponent<RectTransform>();
+
+                tableVerticalScrollBar = Assist.FindComponent<Scrollbar>(gameObject, "Scrollbar");
+
+                if (tableVerticalScrollBar)
+                {
+                    scrollRect.verticalScrollbar = tableVerticalScrollBar;
+                }
             }
+
+            // Add slider
+            //if( tableVerticalScrollBar == null )
+            //{
+            //    tableVerticalScrollBar = gameObject.AddComponent<Scrollbar>();
+            //    tableVerticalScrollBar.direction = Scrollbar.Direction.TopToBottom;
+            //    
+            //}
 
             if (cells == null)
                 cells = new List<UITableViewCell>();
-
-            
 
             // create cells
             for (int i = 0; i < parameters.rows; i++)
@@ -115,7 +142,7 @@ namespace FreeUniverse.Common.Unity
                 cell.transform.SetParent(contentHolder.transform, false);
 
                 UITableViewCell cellComponent = cell.GetComponent<UITableViewCell>();
-                
+
                 cellComponent.row = i;
 
                 tableViewDataProvider.OnTableViewSetupCell(this, cellComponent);
@@ -127,28 +154,37 @@ namespace FreeUniverse.Common.Unity
             {
                 RectTransform tableViewTransform = gameObject.GetComponent<RectTransform>();
 
-                Vector3 pos = tableViewTransform.position - new Vector3(0.0f, tableViewTransform.rect.height * 0.5f, 0.0f);
+                Vector3 pos = tableViewTransform.position + new Vector3(0.0f, contentHeight * 0.5f, 0.0f);
 
                 int i = 0;
+
+                float tableWidth = tableViewTransform.rect.width;
 
                 foreach (UITableViewCell c in cells)
                 {
                     RectTransform rc = c.gameObject.GetComponent<RectTransform>();
 
-                    if( i == 0 )
-                        pos += new Vector3(0.0f, rc.rect.height * 0.5f, 0.0f);
+                    if (i == 0)
+                        pos -= new Vector3(0.0f, rc.rect.height * 0.5f, 0.0f);
                     else
-                        pos += new Vector3(0.0f, rc.rect.height, 0.0f);
+                        pos -= new Vector3(0.0f, rc.rect.height, 0.0f);
 
                     i++;
 
                     rc.position = pos;
+                    rc.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, tableWidth);
                 }
-                
+
             }
 
             // disable original cell
             cellReference.SetActive(false);
+
+            // Vertical scroll bar should be first
+            if (tableVerticalScrollBar)
+            {
+                tableVerticalScrollBar.transform.SetAsLastSibling();
+            }
         }
     }
 }

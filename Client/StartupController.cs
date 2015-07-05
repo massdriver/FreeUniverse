@@ -8,6 +8,7 @@ using FreeUniverse.Common.Procedural;
 using FreeUniverse.Common.Procedural.System;
 using FreeUniverse.Common.Unity;
 using FreeUniverse.Common.Procedural.Galaxy;
+using UnityEngine.UI;
 
 namespace FreeUniverse.Client
 {
@@ -33,7 +34,7 @@ namespace FreeUniverse.Client
         {
             UITableViewParameters p = new UITableViewParameters();
 
-            p.rows = 32;
+            p.rows = 4;
             p.initialScroll = 0.0f;
             p.cellHeight = -1.0f;
             p.cellWidth = -1.0f;
@@ -43,7 +44,7 @@ namespace FreeUniverse.Client
 
         public void OnTableViewSetupCell(UITableView tableView, UITableViewCell cell)
         {
-            
+            cell.GetElement<Text>("character_name").text = "char " + cell.row;
         }
 
         public void OnTableViewRowSelected(UITableView tableView, UITableViewCell cell)
