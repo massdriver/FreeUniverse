@@ -42,7 +42,7 @@ namespace FreeUniverse.Common.Unity
         public GameObject cellReference;
         private Mask mask { get; set; }
         private ScrollRect scrollRect { get; set; }
-        private List<GameObject> cells { get; set; }
+        private List<UITableViewCell> cells { get; set; }
         private GameObject contentHolder { get; set; } // this is where cells are put, its a scroll rect content object
 
         public UITableView()
@@ -57,6 +57,15 @@ namespace FreeUniverse.Common.Unity
 
             if (cells.Count == 0)
                 return;
+
+            // Destroy content cells
+            foreach (UITableViewCell c in cells)
+            {
+                UnityEngine.Object.DestroyImmediate(c.gameObject);
+            }
+
+            cells.Clear();
+            cells = null;
         }
 
         public void Reload()
@@ -68,6 +77,9 @@ namespace FreeUniverse.Common.Unity
 
             if (cellReference == null)
                 return;
+
+            // get parameters
+            UITableViewParameters parameters = tableViewDataProvider.OnTableViewGetParameters(this);
 
             // Add mask
             if( mask == null )
@@ -81,16 +93,18 @@ namespace FreeUniverse.Common.Unity
                 
                 contentHolder = new GameObject();
                 contentHolder.AddComponent<RectTransform>();
-                contentHolder.transform.SetParent(gameObject.transform, false);
 
+                //contentHolder.GetComponent<RectTransform>().
+                //contentHolder.GetComponent<RectTransform>().rect.height = parameters.rows * cellReference.GetComponent<RectTransform>().rect.height;
+                contentHolder.transform.SetParent(gameObject.transform, false);
+                
                 scrollRect.content = contentHolder.GetComponent<RectTransform>();
             }
 
             if (cells == null)
-                cells = new List<GameObject>();
+                cells = new List<UITableViewCell>();
 
-            // get parameters
-            UITableViewParameters parameters = tableViewDataProvider.OnTableViewGetParameters(this);
+            
 
             // create cells
             for (int i = 0; i < parameters.rows; i++)
@@ -101,17 +115,36 @@ namespace FreeUniverse.Common.Unity
                 cell.transform.SetParent(contentHolder.transform, false);
 
                 UITableViewCell cellComponent = cell.GetComponent<UITableViewCell>();
+                
+                cellComponent.row = i;
 
                 tableViewDataProvider.OnTableViewSetupCell(this, cellComponent);
 
-                cells.Add(cell);
+                cells.Add(cellComponent);
             }
 
-            // Align cells
+            // Align cells, in screen cords
             {
                 RectTransform tableViewTransform = gameObject.GetComponent<RectTransform>();
 
+                Vector3 pos = tableViewTransform.position - new Vector3(0.0f, tableViewTransform.rect.height * 0.5f, 0.0f);
 
+                int i = 0;
+
+                foreach (UITableViewCell c in cells)
+                {
+                    RectTransform rc = c.gameObject.GetComponent<RectTransform>();
+
+                    if( i == 0 )
+                        pos += new Vector3(0.0f, rc.rect.height * 0.5f, 0.0f);
+                    else
+                        pos += new Vector3(0.0f, rc.rect.height, 0.0f);
+
+                    i++;
+
+                    rc.position = pos;
+                }
+                
             }
 
             // disable original cell
