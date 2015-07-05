@@ -50,6 +50,14 @@ namespace FreeUniverse.Common.Network
             client.Disconnect("bye");
         }
 
+        public bool isConnected
+        {
+            get
+            {
+                return client != null && client.ConnectionStatus == NetConnectionStatus.Connected;
+            }
+        }
+
         public void Update()
         {
             if (client == null)

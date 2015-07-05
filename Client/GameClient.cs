@@ -9,6 +9,7 @@ using System.Text;
 using FreeUniverse.Common.Network.Messages;
 using UnityEngine;
 using Lidgren.Network;
+using FreeUniverse.Common.Shared;
 
 namespace FreeUniverse
 {
@@ -45,11 +46,6 @@ namespace FreeUniverse
             if (loginClient != null)
             {
                 loginClient.Update();
-
-                //if (netConnection != null)
-                //{
-                //    Debug.Log(netConnection.Status.ToString() + ", " + netConnection.Statistics.ToString());
-                //}
             }
 
             if (viewControllerLogin != null)
@@ -78,7 +74,7 @@ namespace FreeUniverse
 
             viewControllerCreateAccount = new ViewControllerCreateAccount();
             viewControllerCreateAccount.controllerDelegate = this;
-            viewControllerCreateAccount.visible = true;
+            viewControllerCreateAccount.visible = false;
         }
 
         private class LoginServerDelegate : INetworkClientDelegate
@@ -202,7 +198,7 @@ namespace FreeUniverse
 
         private bool CanCreateAccount()
         {
-            return viewControllerCreateAccount.visible ;
+            return viewControllerCreateAccount.visible && loginClient.isConnected;
         }
 
         private string[] data { get; set; }

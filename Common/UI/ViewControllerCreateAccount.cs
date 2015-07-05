@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using UnityEngine.UI;
 
 namespace FreeUniverse.Common.UI
@@ -37,9 +38,19 @@ namespace FreeUniverse.Common.UI
             base.Update(dt);
         }
 
+        private bool IsValidEmail(string strIn)
+        {
+            return Regex.IsMatch(strIn, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
+        }
+
         private bool ValidateInput()
         {
-            return email.text.Length > 5 && password.text.Length > 6;
+            string emailAddress = email.text;
+
+            if (!IsValidEmail(emailAddress))
+                return false;
+
+            return password.text.Length > 6;
         }
 
         private void OnCreateButtonPressed()

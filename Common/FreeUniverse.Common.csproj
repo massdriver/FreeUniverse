@@ -7,7 +7,7 @@
     <ProjectGuid>{01665438-A6C3-4A35-8591-5A254CE059BE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FreeUniverse</RootNamespace>
+    <RootNamespace>FreeUniverse.Common</RootNamespace>
     <AssemblyName>FreeUniverse.Common</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -75,10 +75,10 @@
     <Compile Include="Arch\ArchFaction.cs" />
     <Compile Include="Arch\ArchObject.cs" />
     <Compile Include="Assist.cs" />
-    <Compile Include="Common\PlayerAccountInfo.cs" />
-    <Compile Include="Common\UI\ViewControllerBase.cs" />
-    <Compile Include="Common\UI\ViewControllerCreateAccount.cs" />
-    <Compile Include="Common\UI\ViewControllerLogin.cs" />
+    <Compile Include="Shared\PlayerAccountInfo.cs" />
+    <Compile Include="UI\ViewControllerBase.cs" />
+    <Compile Include="UI\ViewControllerCreateAccount.cs" />
+    <Compile Include="UI\ViewControllerLogin.cs" />
     <Compile Include="Hash.cs" />
     <Compile Include="IBaseObject.cs" />
     <Compile Include="INIReader.cs" />
@@ -109,11 +109,12 @@
     <Compile Include="Unity\DescriptorSolar.cs" />
     <Compile Include="Unity\GalaxyGenerator.cs" />
     <Compile Include="Unity\MovableCamera.cs" />
+    <Compile Include="Unity\UITableView.cs" />
     <Compile Include="ValueMap.cs" />
     <Compile Include="ServerObjectFactoryLoader.cs" />
     <Compile Include="uidkey.cs" />
-    <Compile Include="Common\UI\Console.cs" />
-    <Compile Include="Common\UI\External.cs" />
+    <Compile Include="UI\Console.cs" />
+    <Compile Include="UI\External.cs" />
     <Compile Include="Unity\FactionDescriptor.cs" />
     <Compile Include="Unity\EditableObjectDescriptor.cs" />
     <Compile Include="Unity\SystemExporter.cs" />
