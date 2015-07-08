@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace FreeUniverse.Common.Unity
@@ -26,11 +27,10 @@ namespace FreeUniverse.Common.Unity
         void OnTableViewSetupCell(UITableView tableView, UITableViewCell cell);
     }
 
-    public class UITableViewCell : MonoBehaviour
+    // MH: cell is a custom button
+    public class UITableViewCell : UIButtonImage
     {
         public int row { get; set; } // MH: this is set before UITableViewDataProvider.SetupTableViewCell is called
-
-        public Button selectionButton { get; set; }
 
         public T GetElement<T>(string nickname) where T : Component
         {
@@ -47,7 +47,8 @@ namespace FreeUniverse.Common.Unity
     // attach UITableViewCell component to cell, it should be a panel too
     // assign GameObject property of table view to cell that will be instantiated
     // at runtime assign data provider then call Reload()
-    public class UITableView : MonoBehaviour
+    // optionally you can attach scrollbar name "Scrollbar" to table view panel, it will be attached to scroll rect if found
+    public class UITableView : MonoBehaviour, UIButtonImageDelegate
     {
         public ITableViewDelegate tableViewDelegate { get; set; }
         public ITableViewDataProvider tableViewDataProvider { get; set; }
@@ -122,14 +123,6 @@ namespace FreeUniverse.Common.Unity
                 }
             }
 
-            // Add slider
-            //if( tableVerticalScrollBar == null )
-            //{
-            //    tableVerticalScrollBar = gameObject.AddComponent<Scrollbar>();
-            //    tableVerticalScrollBar.direction = Scrollbar.Direction.TopToBottom;
-            //    
-            //}
-
             if (cells == null)
                 cells = new List<UITableViewCell>();
 
@@ -144,6 +137,7 @@ namespace FreeUniverse.Common.Unity
                 UITableViewCell cellComponent = cell.GetComponent<UITableViewCell>();
 
                 cellComponent.row = i;
+                cellComponent.buttonDelegate = this;
 
                 tableViewDataProvider.OnTableViewSetupCell(this, cellComponent);
 
@@ -160,6 +154,8 @@ namespace FreeUniverse.Common.Unity
 
                 float tableWidth = tableViewTransform.rect.width;
 
+                float scrollbarOffset = tableVerticalScrollBar != null ? tableVerticalScrollBar.GetComponent<RectTransform>().rect.width : 0.0f;
+
                 foreach (UITableViewCell c in cells)
                 {
                     RectTransform rc = c.gameObject.GetComponent<RectTransform>();
@@ -171,8 +167,8 @@ namespace FreeUniverse.Common.Unity
 
                     i++;
 
-                    rc.position = pos;
-                    rc.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, tableWidth);
+                    rc.position = pos - new Vector3(scrollbarOffset * 0.5f, 0.0f, 0.0f);
+                    rc.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, tableWidth - scrollbarOffset);
                 }
 
             }
@@ -184,6 +180,14 @@ namespace FreeUniverse.Common.Unity
             if (tableVerticalScrollBar)
             {
                 tableVerticalScrollBar.transform.SetAsLastSibling();
+            }
+        }
+
+        public void OnUIButtonImageClick(UIButtonImage button)
+        {
+            if (tableViewDelegate != null)
+            {
+                tableViewDelegate.OnTableViewRowSelected(this, (UITableViewCell)button);
             }
         }
     }

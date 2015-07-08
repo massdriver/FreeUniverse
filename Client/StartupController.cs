@@ -9,6 +9,7 @@ using FreeUniverse.Common.Procedural.System;
 using FreeUniverse.Common.Unity;
 using FreeUniverse.Common.Procedural.Galaxy;
 using UnityEngine.UI;
+using FreeUniverse.Common.Shared;
 
 namespace FreeUniverse.Client
 {
@@ -27,14 +28,13 @@ namespace FreeUniverse.Client
             this.tableView.tableViewDataProvider = this;
             this.tableView.tableViewDelegate = this;
             this.tableView.Reload();
-            
         }
 
         public UITableViewParameters OnTableViewGetParameters(UITableView tableView)
         {
             UITableViewParameters p = new UITableViewParameters();
 
-            p.rows = 4;
+            p.rows = 32;
             p.initialScroll = 0.0f;
             p.cellHeight = -1.0f;
             p.cellWidth = -1.0f;
@@ -44,12 +44,13 @@ namespace FreeUniverse.Client
 
         public void OnTableViewSetupCell(UITableView tableView, UITableViewCell cell)
         {
-            cell.GetElement<Text>("character_name").text = "char " + cell.row;
+            Text txt = cell.GetElement<Text>("character_name");
+            txt.text = "char " + cell.row;
         }
 
         public void OnTableViewRowSelected(UITableView tableView, UITableViewCell cell)
         {
-            
+            Debug.Log("selected=" + cell.row);
         }
     }
 
@@ -78,6 +79,8 @@ namespace FreeUniverse.Client
 
         void Update()
         {
+            UpdatePool.Update();
+
             if (gameClient != null)
                 gameClient.Update(Time.deltaTime);
 
@@ -100,6 +103,8 @@ namespace FreeUniverse.Client
             }
 
             StopServers();
+
+            UpdatePool.Release();
         }
 
         private GameClient gameClient { get; set; }

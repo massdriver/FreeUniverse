@@ -76,6 +76,7 @@
     <Compile Include="Arch\ArchObject.cs" />
     <Compile Include="Assist.cs" />
     <Compile Include="Shared\PlayerAccountInfo.cs" />
+    <Compile Include="Shared\UpdatePool.cs" />
     <Compile Include="UI\ViewControllerBase.cs" />
     <Compile Include="UI\ViewControllerCreateAccount.cs" />
     <Compile Include="UI\ViewControllerLogin.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="Unity\DescriptorSolar.cs" />
     <Compile Include="Unity\GalaxyGenerator.cs" />
     <Compile Include="Unity\MovableCamera.cs" />
+    <Compile Include="Unity\UIButtonImage.cs" />
     <Compile Include="Unity\UITableView.cs" />
     <Compile Include="ValueMap.cs" />
     <Compile Include="ServerObjectFactoryLoader.cs" />
