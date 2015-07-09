@@ -6,11 +6,11 @@ using UnityEngine;
 
 namespace FreeUniverse.Common.UI
 {
-    public class ViewControllerBase<T>
+    public class ViewControllerBase<DelegateInterfaceType>
     {
         protected GameObject panelView { get; set; }
 
-        public T controllerDelegate { get;set; }
+        public DelegateInterfaceType controllerDelegate { get;set; }
 
         public bool visible
         {

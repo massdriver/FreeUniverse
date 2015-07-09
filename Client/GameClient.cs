@@ -20,7 +20,7 @@ namespace FreeUniverse
     {
         private NetworkClient loginClient { get; set; }
         private LoginServerDelegate loginDelegate { get; set; }
-        private PlayerAccountInfo playerAccountInfo { get; set; }
+        private PlayerAccountDesc playerAccountInfo { get; set; }
 
         public static GameClient instance { get; set; }
 

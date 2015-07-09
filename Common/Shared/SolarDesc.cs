@@ -5,10 +5,7 @@ using System.Text;
 
 namespace FreeUniverse.Common.Shared
 {
-    public sealed class PlayerAccountInfo
+    public sealed class SolarDesc
     {
-        public string userName { get; set; }
-
-
     }
 }
