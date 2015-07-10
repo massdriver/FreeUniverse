@@ -75,9 +75,11 @@
     <Compile Include="Arch\ArchFaction.cs" />
     <Compile Include="Arch\ArchObject.cs" />
     <Compile Include="Assist.cs" />
+    <Compile Include="IBinarySerializable.cs" />
     <Compile Include="Shared\CharacterDesc.cs" />
     <Compile Include="Shared\PlayerAccountDesc.cs" />
     <Compile Include="Shared\SolarDesc.cs" />
+    <Compile Include="Shared\UniverseLocation.cs" />
     <Compile Include="Shared\UpdatePool.cs" />
     <Compile Include="UI\ViewControllerBase.cs" />
     <Compile Include="UI\ViewControllerCreateAccount.cs" />

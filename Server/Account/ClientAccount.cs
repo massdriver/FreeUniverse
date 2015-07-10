@@ -1,4 +1,5 @@
 ﻿using FreeUniverse.Common;
+using FreeUniverse.Common.Shared;
 using FreeUniverse.Server.FileDatabase;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace FreeUniverse.Server.Account
         public DateTime createDate { get; private set; }
         public string email { get; private set; }
         public string password { get; private set; }
+        public PlayerAccountDesc playerDesc { get; private set; }
 
         public ClientAccount()
         {

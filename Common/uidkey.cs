@@ -6,7 +6,7 @@ using System.Text;
 
 namespace FreeUniverse.Common
 {
-    public class uidkey
+    public class uidkey : IBinarySerializable
     {
         public uint a, b, c, d;
 
@@ -29,6 +29,14 @@ namespace FreeUniverse.Common
         }
 
         public uidkey(BinaryReader reader)
+        {
+            a = reader.ReadUInt32();
+            b = reader.ReadUInt32();
+            c = reader.ReadUInt32();
+            d = reader.ReadUInt32();
+        }
+
+        public void Read(BinaryReader reader)
         {
             a = reader.ReadUInt32();
             b = reader.ReadUInt32();
@@ -123,5 +131,11 @@ namespace FreeUniverse.Common
         {
             return "uidkey=" + a + "-" + b + "-" + c + "-" + d;
         }
+
+        public bool IsValid()
+        {
+            return a != 0 && b != 0 && c != 0 && d != 0;
+        }
+        
     }
 }

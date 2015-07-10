@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FreeUniverse.Common;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace FreeUniverse.Server.FileDatabase
 {
-    public class DatabaseElement
+    public class DatabaseElement : IBinarySerializable
     {
         public ulong id { get; protected set; }
 
