@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace FreeUniverse.Server
 {
-    public class ServerObjectFactory : IServerObjectFactory
+    public sealed class ServerObjectFactory : IServerObjectFactory
     {
         public IBaseObject Create(ServerType type)
         {

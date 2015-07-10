@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace FreeUniverse.Common.Unity
 {
-    public class DescriptorSolar : EditableObjectDescriptor
+    public sealed class DescriptorSolar : EditableObjectDescriptor
     {
         public float mass;
         

@@ -12,7 +12,7 @@ namespace FreeUniverse.Common.UI
         void OnViewControllerCreateAccountAction(ViewControllerCreateAccount controller, string email, string password);
     }
 
-    public class ViewControllerCreateAccount : ViewControllerBase<IViewControllerCreateAccountDelegate>
+    public sealed class ViewControllerCreateAccount : ViewControllerBase<IViewControllerCreateAccountDelegate>
     {
         private static readonly string PANEL_PREFAB_PATH = "UI/prefab_ui_panel_create_account";
 

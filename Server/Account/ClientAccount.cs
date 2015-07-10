@@ -10,7 +10,7 @@ namespace FreeUniverse.Server.Account
 {
     // MH: this is a server version of account information
     // client side has its own one
-    public class ClientAccount : DatabaseElement
+    public sealed class ClientAccount : DatabaseElement
     {
         public uidkey guid { get; private set; }
         public DateTime lastLogin { get; private set; }

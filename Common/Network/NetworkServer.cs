@@ -14,7 +14,7 @@ namespace FreeUniverse.Common.Network
         void OnNetworkServerClientMessage(NetworkServer server, int client, NetworkMessage msg);
     }
 
-    public class NetworkServer
+    public sealed class NetworkServer
     {
         public INetworkServerDelegate serverDelegate { get; set; }
         private Lidgren.Network.NetServer server { get; set; }

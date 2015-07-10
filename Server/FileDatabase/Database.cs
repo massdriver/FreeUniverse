@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 
 namespace FreeUniverse.Server.FileDatabase
 {
-    public class Database<T> where T : DatabaseElement, new()
+    public sealed class Database<T> where T : DatabaseElement, new()
     {
         public string fullPath { get; private set; }
 

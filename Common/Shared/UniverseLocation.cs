@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FreeUniverse.Common.Shared
 {
-    public class UniverseLocation : IBinarySerializable
+    public sealed class UniverseLocation : IBinarySerializable
     {
         public enum DockType
         {

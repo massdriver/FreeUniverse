@@ -353,7 +353,7 @@ namespace FreeUniverse.Common
         }
     }
 
-    public class ValueMap
+    public sealed class ValueMap
     {
         private Dictionary<string, Value> values { get; set; }
 

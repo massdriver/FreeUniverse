@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FreeUniverse.Common.Arch
 {
-    public class ArchFaction : ArchObject
+    public sealed class ArchFaction : ArchObject
     {
 
     }

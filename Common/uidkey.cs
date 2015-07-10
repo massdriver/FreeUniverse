@@ -6,7 +6,7 @@ using System.Text;
 
 namespace FreeUniverse.Common
 {
-    public class uidkey : IBinarySerializable
+    public sealed class uidkey : IBinarySerializable
     {
         public uint a, b, c, d;
 

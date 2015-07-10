@@ -77,6 +77,8 @@
     <Compile Include="Assist.cs" />
     <Compile Include="IBinarySerializable.cs" />
     <Compile Include="Shared\CharacterDesc.cs" />
+    <Compile Include="Shared\CharacterReputation.cs" />
+    <Compile Include="Shared\CreditAccount.cs" />
     <Compile Include="Shared\PlayerAccountDesc.cs" />
     <Compile Include="Shared\SolarDesc.cs" />
     <Compile Include="Shared\UniverseLocation.cs" />

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FreeUniverse.Common.Network.Messages
 {
-    public class MsgRequestCreateAccount : MsgGenericValues
+    public sealed class MsgRequestCreateAccount : MsgGenericValues
     {
         public MsgRequestCreateAccount()
         {

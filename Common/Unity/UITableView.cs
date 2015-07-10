@@ -48,7 +48,7 @@ namespace FreeUniverse.Common.Unity
     // assign GameObject property of table view to cell that will be instantiated
     // at runtime assign data provider then call Reload()
     // optionally you can attach scrollbar name "Scrollbar" to table view panel, it will be attached to scroll rect if found
-    public class UITableView : MonoBehaviour, UIButtonImageDelegate
+    public sealed class UITableView : MonoBehaviour, UIButtonImageDelegate
     {
         public ITableViewDelegate tableViewDelegate { get; set; }
         public ITableViewDataProvider tableViewDataProvider { get; set; }

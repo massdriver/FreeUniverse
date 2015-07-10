@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FreeUniverse.Common.Network
 {
-    class NetworkClientInfo
+    sealed class NetworkClientInfo
     {
         public int client { get; set; }
 

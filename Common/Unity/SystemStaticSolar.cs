@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace FreeUniverse.Common.Unity
 {
-    public class SystemStaticSolar : EditableObjectDescriptor
+    public sealed class SystemStaticSolar : EditableObjectDescriptor
     {
 
     }

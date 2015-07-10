@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace FreeUniverse.Server.Account
 {
-    internal class ClientAccountDatabase
+    internal sealed class ClientAccountDatabase
     {
         private Database<ClientAccount> accounts { get; set; }
 

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace FreeUniverse.Common
 {
-    public class INIReaderParameter
+    public sealed class INIReaderParameter
     {
         public string nickname;
         public string[] values;
@@ -117,7 +117,7 @@ namespace FreeUniverse.Common
         }
     }
 
-    public class INIReaderHeader
+    public sealed class INIReaderHeader
     {
         public string nickname;
         public List<INIReaderParameter> parameters = new List<INIReaderParameter>();

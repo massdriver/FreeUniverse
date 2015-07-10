@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace FreeUniverse.Common
 {
-    public class Assist
+    public static class Assist
     {
         // Find component in GameObject hierarchy by type
         public static T FindComponent<T>(GameObject root, string child) where T : Component

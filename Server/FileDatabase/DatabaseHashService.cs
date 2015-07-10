@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FreeUniverse.Server.FileDatabase
 {
-    internal class DatabaseHashService
+    internal static class DatabaseHashService
     {
         public static ulong StringToUINT64(string s)
         {

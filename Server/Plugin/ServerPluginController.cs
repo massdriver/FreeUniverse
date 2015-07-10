@@ -13,7 +13,7 @@ namespace FreeUniverse.Server.Plugin
     //
     // Assembly.dll ClassName
     //
-    public class ServerPluginController
+    public sealed class ServerPluginController
     {
         private static List<IServerPlugin> plugins = new List<IServerPlugin>();
 

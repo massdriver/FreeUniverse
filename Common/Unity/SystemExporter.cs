@@ -9,7 +9,7 @@ using UnityEngine;
 namespace FreeUniverse.Common.Unity
 {
     [CustomEditor(typeof(SystemRoot))]
-    public class SystemExporter : Editor
+    public sealed class SystemExporter : Editor
     {
         public override void OnInspectorGUI()
         {

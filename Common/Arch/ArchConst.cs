@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FreeUniverse.Common.Arch
 {
-    public class ArchConst 
+    public static class ArchConst 
     {
         public static readonly string Nickname = "nickname";
         public static readonly string IdsObjectName = "idsObjectName";

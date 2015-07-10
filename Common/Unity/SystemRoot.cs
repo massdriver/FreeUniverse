@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace FreeUniverse.Common.Unity
 {
-    public class SystemRoot : EditableObjectDescriptor
+    public sealed class SystemRoot : EditableObjectDescriptor
     {
         public string backgroundMusic;
 

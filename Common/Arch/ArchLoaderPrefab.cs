@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace FreeUniverse.Common.Unity
 {
-    public class ArchLoaderPrefab<ComponentType, ArchType>
+    public sealed class ArchLoaderPrefab<ComponentType, ArchType>
         where ComponentType : EditableObjectDescriptor
         where ArchType : ArchObject, new()
     {

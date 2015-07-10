@@ -14,7 +14,7 @@ namespace FreeUniverse.Common.Network
         void OnNetworkClientMessage(NetworkClient client, NetworkMessage message);
     }
 
-    public class NetworkClient
+    public sealed class NetworkClient
     {
         public INetworkClientDelegate clientDelegate { get; set; }
         private Lidgren.Network.NetClient client { get; set; }
