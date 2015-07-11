@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace FreeUniverse.Common.Arch
+namespace FreeUniverse.Common.World
 {
-    public class ArchSolar : ArchObject
+    public sealed class SolarComponentHardpoint
     {
     }
 }

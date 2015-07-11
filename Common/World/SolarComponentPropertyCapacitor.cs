@@ -5,7 +5,10 @@ using System.Text;
 
 namespace FreeUniverse.Common.World
 {
-    class SolarComponentPropertyCapacitor
+    public sealed class SolarComponentPropertyCapacitor
     {
+        public float chargeModifier { get; set; }
+        public float maxCapacity { get; set; }
+        public float capacity { get; set; }
     }
 }

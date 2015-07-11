@@ -11,7 +11,7 @@ namespace FreeUniverse.Common.World
     public sealed class SolarComponentPropertyHull : SolarComponentProperty
     {
         public float hitPoints { get; private set; }
-
+        public float maxHitPoints { get; private set; }
         public GameObject worldObject { get; private set; }
 
         public SolarComponentPropertyHull(SolarComponent component, ArchSolarComponentPropertyHull arch)

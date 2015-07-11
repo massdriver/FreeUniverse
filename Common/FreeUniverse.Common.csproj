@@ -75,6 +75,9 @@
     <Compile Include="Arch\ArchFaction.cs" />
     <Compile Include="Arch\ArchObject.cs" />
     <Compile Include="Arch\ArchSolar.cs" />
+    <Compile Include="Arch\ArchSolarComponent.cs" />
+    <Compile Include="Arch\ArchSolarComponentProperty.cs" />
+    <Compile Include="Arch\ArchSolarComponentPropertyHull.cs" />
     <Compile Include="Assist.cs" />
     <Compile Include="IBinarySerializable.cs" />
     <Compile Include="Shared\CharacterDesc.cs" />
@@ -132,6 +135,7 @@
     <Compile Include="Unity\SystemStaticSolar.cs" />
     <Compile Include="World\SolarComponent.cs" />
     <Compile Include="World\Solar.cs" />
+    <Compile Include="World\SolarComponentHardpoint.cs" />
     <Compile Include="World\SolarComponentProperty.cs" />
     <Compile Include="World\SolarComponentPropertyCapacitor.cs" />
     <Compile Include="World\SolarComponentPropertyCargo.cs" />

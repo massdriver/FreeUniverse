@@ -5,7 +5,8 @@ using System.Text;
 
 namespace FreeUniverse.Common.Arch
 {
-    public class ArchSolar : ArchObject
+    public class ArchSolarComponent : ArchObject
     {
+
     }
 }
