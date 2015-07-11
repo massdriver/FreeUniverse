@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace FreeUniverse
 {
-    public sealed class FreeUniverseServiceConfiguration
+    public sealed class ServiceConfiguration
     {
         public string accountDatabaseDir { get; private set; }
         public string accountDatabasePassword { get; private set; }
@@ -17,7 +17,7 @@ namespace FreeUniverse
 
         public static readonly string DEFAULT_CONFIG_FILE_PATH = "server_config.ini";
 
-        public FreeUniverseServiceConfiguration()
+        public ServiceConfiguration()
         {
             TextAsset txt = Resources.Load("server_config") as TextAsset;
 
@@ -53,7 +53,7 @@ namespace FreeUniverse
             }
         }
 
-        public FreeUniverseServiceConfiguration(string configFilePath)
+        public ServiceConfiguration(string configFilePath)
         {
             throw new Exception("read from file not supported");
 

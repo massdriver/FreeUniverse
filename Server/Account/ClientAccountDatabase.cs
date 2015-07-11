@@ -12,7 +12,7 @@ namespace FreeUniverse.Server.Account
     {
         private Database<ClientAccount> accounts { get; set; }
 
-        public ClientAccountDatabase(FreeUniverseServiceConfiguration config)
+        public ClientAccountDatabase(ServiceConfiguration config)
         {
             Debug.Log("ClientAccountDatabase: dir=" + config.accountDatabaseDir + ", pass=" + config.accountDatabasePassword);
 

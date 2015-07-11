@@ -9,9 +9,11 @@ namespace FreeUniverse.Common.Shared
     {
         public enum DockType
         {
-            Invalid,
+            Invalid, // MH: im outta here
             Static, // static bases
-            Dynamic // MH: dynamic dockable ships or similar that are property of character
+            PlayerSolar, // MH: dynamic dockable ships or similar that are property of character
+            LocalDynamicSystem, // MH: zone server only generated system, possibly for missions (use system + baseid properties)
+            GlobalDynamicSystem // MH: universe wide accessible system (use system + baseid properties)
         }
 
         private ulong id0 { get; set; }
@@ -34,6 +36,7 @@ namespace FreeUniverse.Common.Shared
             }
         }
 
+        // valid only with type equal to PlayerSolar
         public ulong character
         {
             get
@@ -42,6 +45,7 @@ namespace FreeUniverse.Common.Shared
             }
         }
 
+        // valid only with type equal to PlayerSolar
         public ulong solarid
         {
             get

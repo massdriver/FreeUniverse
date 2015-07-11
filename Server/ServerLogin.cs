@@ -14,7 +14,7 @@ namespace FreeUniverse.Server
     {
         private ClientAccountDatabase accountDatabase { get; set; }
 
-        public ServerLogin(FreeUniverseServiceConfiguration config) : base(config)
+        public ServerLogin(ServiceConfiguration config) : base(config)
         {
             accountDatabase = new ClientAccountDatabase(config);
 

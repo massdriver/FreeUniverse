@@ -12,7 +12,7 @@ namespace FreeUniverse.Server
             switch (type)
             {
                 case ServerType.Login:
-                    return new ServerLogin(new FreeUniverseServiceConfiguration());
+                    return new ServerLogin(new ServiceConfiguration());
                     //return new ServerLogin(new FreeUniverseServiceConfiguration(FreeUniverseServiceConfiguration.DEFAULT_CONFIG_FILE_PATH));
             }
 

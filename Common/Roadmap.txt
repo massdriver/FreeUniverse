@@ -1,0 +1,12 @@
+﻿roadmap file
+
+1) Login server interaction
+-> connection and validation of account info
+-> create/delete character from template
+-> login character into universe
+
+2) Base docking
+-> dock to base or any other dockable ship
+-> undock from base or any other dockable ship
+
+3) guns

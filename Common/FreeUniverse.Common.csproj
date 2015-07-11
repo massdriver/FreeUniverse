@@ -129,9 +129,17 @@
     <Compile Include="Unity\SystemExporter.cs" />
     <Compile Include="Unity\SystemRoot.cs" />
     <Compile Include="Unity\SystemStaticSolar.cs" />
+    <Compile Include="World\SolarComponent.cs" />
+    <Compile Include="World\Solar.cs" />
+    <Compile Include="World\SolarComponentProperty.cs" />
+    <Compile Include="World\SolarComponentPropertyHull.cs" />
+    <Compile Include="World\SolarController.cs" />
+    <Compile Include="World\WorldController.cs" />
+    <Compile Include="World\WorldControllerClient.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="World\" />
+    <Content Include="Roadmap.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

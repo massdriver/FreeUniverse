@@ -12,10 +12,10 @@ namespace FreeUniverse.Server
         INetworkServerDelegate
     {
         protected NetworkMessageHandler msgHandler { get; set; }
-        protected FreeUniverseServiceConfiguration configuration { get; set; }
+        protected ServiceConfiguration configuration { get; set; }
         protected NetworkServer server { get; set; }
 
-        public ServerDefault(FreeUniverseServiceConfiguration configuration)
+        public ServerDefault(ServiceConfiguration configuration)
         {
             this.configuration = configuration;
 
