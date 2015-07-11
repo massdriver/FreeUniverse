@@ -8,7 +8,7 @@ namespace FreeUniverse.Common.World
 {
     public sealed class Solar : IBaseObject
     {
-        public int id { get; private set; }
+        public uint id { get; private set; }
         public string nickname { get; set; }
         public SolarController controller { get; set; }
         public WorldController worldController { get; private set; }
@@ -17,12 +17,19 @@ namespace FreeUniverse.Common.World
 
         private List<SolarComponent> components { get; set; }
 
-        public Solar(WorldController worldController, int id, ArchObject arch)
+        public Solar(WorldController worldController, uint id, ArchSolar arch)
         {
             this.valid = true;
             this.worldController = worldController;
             this.id = id;
             this.components = new List<SolarComponent>();
+
+            CreateComponents(arch);
+        }
+
+        private void CreateComponents(ArchSolar arch)
+        {
+
         }
 
         public void Update(float dt)

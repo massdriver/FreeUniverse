@@ -74,6 +74,7 @@
     <Compile Include="Arch\ArchConst.cs" />
     <Compile Include="Arch\ArchFaction.cs" />
     <Compile Include="Arch\ArchObject.cs" />
+    <Compile Include="Arch\ArchSolar.cs" />
     <Compile Include="Assist.cs" />
     <Compile Include="IBinarySerializable.cs" />
     <Compile Include="Shared\CharacterDesc.cs" />
@@ -132,7 +133,17 @@
     <Compile Include="World\SolarComponent.cs" />
     <Compile Include="World\Solar.cs" />
     <Compile Include="World\SolarComponentProperty.cs" />
+    <Compile Include="World\SolarComponentPropertyCapacitor.cs" />
+    <Compile Include="World\SolarComponentPropertyCargo.cs" />
+    <Compile Include="World\SolarComponentPropertyCloak.cs" />
+    <Compile Include="World\SolarComponentPropertyEngine.cs" />
     <Compile Include="World\SolarComponentPropertyHull.cs" />
+    <Compile Include="World\SolarComponentPropertyJumpDrive.cs" />
+    <Compile Include="World\SolarComponentPropertyPowerPlant.cs" />
+    <Compile Include="World\SolarComponentPropertyRadar.cs" />
+    <Compile Include="World\SolarComponentPropertyRepairKit.cs" />
+    <Compile Include="World\SolarComponentPropertyShield.cs" />
+    <Compile Include="World\SolarComponentPropertyWeapon.cs" />
     <Compile Include="World\SolarController.cs" />
     <Compile Include="World\WorldController.cs" />
     <Compile Include="World\WorldControllerClient.cs" />

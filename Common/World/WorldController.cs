@@ -11,18 +11,25 @@ namespace FreeUniverse.Common.World
     {
         public int layer { get; private set; }
         protected NetworkMessageHandler messageHandler { get; set; }
-        protected Dictionary<int, Solar> solars { get; set; }
-        protected int solarid { get; set; }
+        protected Dictionary<uint, Solar> solars { get; set; }
+        protected uint lastSolarID { get; set; }
 
         public WorldController(int layer)
         {
-            this.solarid = 0;
+            this.lastSolarID = 0;
             this.layer = layer;
             this.messageHandler = new NetworkMessageHandler();
-            this.solars = new Dictionary<int, Solar>();
+            this.solars = new Dictionary<uint, Solar>();
+
+            SetupNetworkMessageHandlers();
         }
 
-        public Solar GetSolar(int id)
+        public virtual void SetupNetworkMessageHandlers()
+        {
+
+        }
+
+        public Solar GetSolar(uint id)
         {
             Solar s = null;
 
@@ -32,9 +39,9 @@ namespace FreeUniverse.Common.World
             return null;
         }
 
-        public virtual Solar CreateSolar(ArchObject obj)
+        public virtual Solar CreateSolar(ArchSolar obj)
         {
-            Solar solar = new Solar(this, solarid++, obj);
+            Solar solar = new Solar(this, ++lastSolarID, obj);
 
             solars[solar.id] = solar;
 
@@ -43,7 +50,7 @@ namespace FreeUniverse.Common.World
 
         public virtual void Update(float dt)
         {
-            foreach (KeyValuePair<int, Solar> e in solars)
+            foreach (KeyValuePair<uint, Solar> e in solars)
                 e.Value.Update(dt);
         }
 
