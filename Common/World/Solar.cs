@@ -13,10 +13,9 @@ namespace FreeUniverse.Common.World
         public SolarController controller { get; set; }
         public WorldController worldController { get; private set; }
         public bool valid { get; set; }
+        public SolarComponent rootComponent { get; private set; }
 
         private Dictionary<uint, SolarComponent> components { get; set; }
-
-        public SolarComponent rootComponent { get; private set; }
 
         public Solar(WorldController worldController, uint id, ArchSolar arch)
         {
@@ -35,6 +34,9 @@ namespace FreeUniverse.Common.World
 
         public void Update(float dt)
         {
+            if (controller != null)
+                controller.Update(dt);
+
             UpdateComponentProperties<SolarComponentPropertyHull>(dt);
         }
 

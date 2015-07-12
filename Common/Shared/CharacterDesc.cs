@@ -12,12 +12,15 @@ namespace FreeUniverse.Common.Shared
         public UniverseLocation location { get; private set; }
         public CreditAccount creditAccount { get; private set; }
         public CharacterReputation reputation { get; private set; }
+
+        public ValueMap customData { get; private set; }
         
         private List<SolarDesc> characterSolars { get; set; }
 
         public CharacterDesc()
         {
-            
+            customData = new ValueMap();
+            characterSolars = new List<SolarDesc>();
         }
 
         public void SetupFromArch(ArchObject obj)

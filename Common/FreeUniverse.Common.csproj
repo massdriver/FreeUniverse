@@ -120,6 +120,12 @@
     <Compile Include="Unity\DescriptorSolar.cs" />
     <Compile Include="Unity\GalaxyGenerator.cs" />
     <Compile Include="Unity\MovableCamera.cs" />
+    <Compile Include="Unity\Solar\ComponentHardpoint.cs" />
+    <Compile Include="Unity\Solar\DescriptorSolarComponent.cs" />
+    <Compile Include="Unity\Solar\ComponentProperty.cs" />
+    <Compile Include="Unity\Solar\PropertyEngine.cs" />
+    <Compile Include="Unity\Solar\PropertyRigidHull.cs" />
+    <Compile Include="Unity\Solar\DescriptorSolarRoot.cs" />
     <Compile Include="Unity\UIButtonImage.cs" />
     <Compile Include="Unity\UIForm.cs" />
     <Compile Include="Unity\UITableView.cs" />
@@ -149,6 +155,7 @@
     <Compile Include="World\SolarComponentPropertyShield.cs" />
     <Compile Include="World\SolarComponentPropertyWeapon.cs" />
     <Compile Include="World\SolarController.cs" />
+    <Compile Include="World\SolarControllerHuman.cs" />
     <Compile Include="World\WorldController.cs" />
     <Compile Include="World\WorldControllerClient.cs" />
   </ItemGroup>
