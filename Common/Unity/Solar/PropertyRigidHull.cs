@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FreeUniverse.Common.Arch;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,14 +12,33 @@ namespace FreeUniverse.Common.Unity.Solar
         public float linearDrag = 0.1f;
         public float angularDrag = 0.1f;
 
+        [Tooltip("Zero or less means that hull is indestructile")]
         public float hitPoints = 1.0f;
-        public float resistanceKinetic = 0.0f;
-        public float resistanceDarkMatter = 0.0f;
-        public float resistanceEMP = 0.0f;
-        public float resistanceEnergy = 0.0f;
+        public bool staticHull = false;
 
+        [Tooltip("Enable collision with other world objects and projectiles")]
         public bool collideWithWorld = true;
 
-        public Mesh hullMesh;
+        [Tooltip("Use child colliders for this rigid or use convex mesh")]
+        public bool useCustomColliders = true;
+
+        public override sealed void ReadFromValueMap(ValueMap map)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override sealed ValueMap WriteToValueMap()
+        {
+            ValueMap pmap = base.WriteToValueMap();
+
+            pmap[ArchSolarComponentPropertyHull.LinearDrag] = linearDrag;
+            pmap[ArchSolarComponentPropertyHull.AngularDrag] = angularDrag;
+            pmap[ArchSolarComponentPropertyHull.HitPoints] = hitPoints;
+            pmap[ArchSolarComponentPropertyHull.StaticHull] = staticHull;
+            pmap[ArchSolarComponentPropertyHull.CollideWithWorld] = collideWithWorld;
+            pmap[ArchSolarComponentPropertyHull.UseCustomColliders] = useCustomColliders;
+
+            return pmap;
+        }
     }
 }

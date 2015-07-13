@@ -6,6 +6,7 @@ using System.Collections.Generic;
 #if UNITY_ENGINE
 using UnityEngine;
 using System.IO;
+using System.Collections;
 #endif
 
 namespace FreeUniverse.Common
@@ -73,6 +74,8 @@ namespace FreeUniverse.Common
         public static implicit operator Value(uidkey i) { return new Value(i); }
         public static implicit operator uidkey(Value val) { return Cast<uidkey>(val); }
 
+        public static implicit operator Value(bool b) { return new Value(b); }
+        public static implicit operator bool(Value val) { return Cast<bool>(val); }
 
 #if UNITY_ENGINE
         public static implicit operator Value(Color i) { return new Value(i); }
@@ -105,6 +108,7 @@ namespace FreeUniverse.Common
             Array,
             ValueMap,
             UIDKey,
+            Bool,
 
 #if UNITY_ENGINE
             Color,
@@ -138,6 +142,13 @@ namespace FreeUniverse.Common
             {
                 writer.Write((byte)ValueTypeID.Int);
                 writer.Write(Cast<int>());
+                return;
+            }
+
+            if (type == typeof(bool))
+            {
+                writer.Write((byte)ValueTypeID.Bool);
+                writer.Write(Cast<bool>());
                 return;
             }
 
@@ -244,7 +255,7 @@ namespace FreeUniverse.Common
         public void Read(BinaryReader reader)
         {
             if (!IsEmpty())
-                throw new Exception("trying to write to non empty value");
+                throw new Exception("trying to read to non empty value");
 
             ValueTypeID id = (ValueTypeID)reader.ReadByte();
 
@@ -253,6 +264,11 @@ namespace FreeUniverse.Common
                 case ValueTypeID.Int:
                     {
                         this.obj = reader.ReadInt32();
+                    }
+                    break;
+                case ValueTypeID.Bool:
+                    {
+                        this.obj = reader.ReadBoolean();
                     }
                     break;
                 case ValueTypeID.ULong:
@@ -448,6 +464,39 @@ namespace FreeUniverse.Common
                 return null;
 
             return Convert.ToBase64String(ToByteArray());
+        }
+
+        public static List<T> ValueArrayToList<T>(Value[] varray)
+        {
+            List<T> lst = new List<T>();
+
+            if (varray != null)
+            {
+                foreach (Value v in varray)
+                {
+                    lst.Add(v.Cast<T>());
+                }
+            }
+
+            return lst;
+        }
+
+        public static Value[] ListToValueArray<T>(List<T> lst)
+        {
+            if (lst.Count == 0)
+                return null;
+
+            Value[] varray = new Value[lst.Count];
+
+            int i = 0;
+
+            foreach (T item in lst)
+            {
+                varray[i] = new Value(item);
+                i++;
+            }
+
+            return varray;
         }
     }
 }

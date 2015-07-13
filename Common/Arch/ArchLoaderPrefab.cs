@@ -29,7 +29,7 @@ namespace FreeUniverse.Common.Unity
                 return;
 
             ArchType archObj = new ArchType();
-            archObj.Read(ct.ToValueMap());
+            archObj.ReadFromValueMap(ct.ToValueMap());
             descriptors.Add(archObj.id, archObj);
         }
 

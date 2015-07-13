@@ -71,6 +71,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Arch\ArchComponentHardpoint.cs" />
     <Compile Include="Arch\ArchConst.cs" />
     <Compile Include="Arch\ArchFaction.cs" />
     <Compile Include="Arch\ArchObject.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Arch\ArchSolarComponentPropertyHull.cs" />
     <Compile Include="Assist.cs" />
     <Compile Include="IBinarySerializable.cs" />
+    <Compile Include="IValueMapSerializable.cs" />
     <Compile Include="Shared\CharacterDesc.cs" />
     <Compile Include="Shared\CharacterReputation.cs" />
     <Compile Include="Shared\CreditAccount.cs" />
@@ -123,9 +125,16 @@
     <Compile Include="Unity\Solar\ComponentHardpoint.cs" />
     <Compile Include="Unity\Solar\DescriptorSolarComponent.cs" />
     <Compile Include="Unity\Solar\ComponentProperty.cs" />
+    <Compile Include="Unity\Solar\PropertyArmor.cs" />
+    <Compile Include="Unity\Solar\PropertyCapacitor.cs" />
+    <Compile Include="Unity\Solar\PropertyCargo.cs" />
     <Compile Include="Unity\Solar\PropertyEngine.cs" />
+    <Compile Include="Unity\Solar\PropertyPowerPlant.cs" />
+    <Compile Include="Unity\Solar\PropertyRepairKit.cs" />
     <Compile Include="Unity\Solar\PropertyRigidHull.cs" />
     <Compile Include="Unity\Solar\DescriptorSolarRoot.cs" />
+    <Compile Include="Unity\Solar\PropertyShield.cs" />
+    <Compile Include="Unity\Solar\PropertyWeapon.cs" />
     <Compile Include="Unity\UIButtonImage.cs" />
     <Compile Include="Unity\UIForm.cs" />
     <Compile Include="Unity\UITableView.cs" />

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using UnityEngine;
 
 namespace FreeUniverse.Common.Unity.Solar
 {
-    public class ComponentHardpoint : MonoBehaviour
+    public class PropertyCargo : ComponentProperty
     {
-        public string hardpointType = "hp_any";
+        public float capacity = 1.0f;
+        public bool canOperateInSpace = true;
     }
 }
