@@ -11,6 +11,31 @@ using System.Collections;
 
 namespace FreeUniverse.Common
 {
+
+#if UNITY_ENGINE
+    public struct Transform3D
+    {
+        public Vector3 position { get; set; }
+        public Vector3 localScale { get; set; }
+        public Quaternion rotation { get; set; }
+
+        public Transform3D(Transform transform) : this()
+        {
+            this.position = transform.position;
+            this.localScale = transform.localScale;
+            this.rotation = transform.rotation;
+        }
+
+        public Transform3D(Vector3 position, Quaternion rotation, Vector3 localScale)
+            : this()
+        {
+            this.position = position;
+            this.rotation = rotation;
+            this.localScale = localScale;
+        }
+    }
+#endif
+
     public struct Value
     {
         public object obj { get; set; }
@@ -90,11 +115,15 @@ namespace FreeUniverse.Common
         public static implicit operator Value(Quaternion i) { return new Value(i); }
         public static implicit operator Quaternion(Value val) { return Cast<Quaternion>(val); }
 
-        public static implicit operator Value(Transform i) { return new Value(i); }
-        public static implicit operator Transform(Value val) { return Cast<Transform>(val); }
+        public static implicit operator Value(Transform3D i) { return new Value(i); }
+        public static implicit operator Transform3D(Value val) { return Cast<Transform3D>(val); }
 
-        public static implicit operator Value(UnityEngine.Object i) { return new Value(i); }
-        public static implicit operator UnityEngine.Object(Value val) { return Cast<UnityEngine.Object>(val); }
+        // MH: not supported since Transform object can only live while GameObject is alive
+        // use Transform3D
+        //public static implicit operator Value(Transform i) { return new Value(i); }
+        //public static implicit operator Transform(Value val) { return Cast<Transform>(val); }
+        //public static implicit operator Value(UnityEngine.Object i) { return new Value(i); }
+        //public static implicit operator UnityEngine.Object(Value val) { return Cast<UnityEngine.Object>(val); }
 #endif
 
         enum ValueTypeID
@@ -115,7 +144,8 @@ namespace FreeUniverse.Common
             Vector2,
             Vector3,
             Quaternion,
-            Transform,
+            Transform3D,
+            //Transform, DEPRECATED
 #endif
             Unknown
         }
@@ -177,6 +207,38 @@ namespace FreeUniverse.Common
             {
                 writer.Write((byte)ValueTypeID.String);
                 writer.Write(Cast<string>());
+                return;
+            }
+
+            if (type == typeof(Transform3D))
+            {
+                writer.Write((byte)ValueTypeID.Transform3D);
+
+                {
+                    Vector3 v = Cast<Transform3D>().position;
+
+                    writer.Write(v.x);
+                    writer.Write(v.y);
+                    writer.Write(v.z);
+                }
+
+                {
+                    Quaternion v = Cast<Transform3D>().rotation;
+
+                    writer.Write(v.x);
+                    writer.Write(v.y);
+                    writer.Write(v.z);
+                    writer.Write(v.w);
+                }
+
+                {
+                    Vector3 v = Cast<Transform3D>().localScale;
+
+                    writer.Write(v.x);
+                    writer.Write(v.y);
+                    writer.Write(v.z);
+                }
+
                 return;
             }
 
@@ -261,6 +323,7 @@ namespace FreeUniverse.Common
 
             switch (id)
             {
+                
                 case ValueTypeID.Int:
                     {
                         this.obj = reader.ReadInt32();
@@ -322,6 +385,25 @@ namespace FreeUniverse.Common
                     }
                     break;
 #if UNITY_ENGINE
+                case ValueTypeID.Transform3D:
+                    {
+                        float px = reader.ReadSingle();
+                        float py = reader.ReadSingle();
+                        float pz = reader.ReadSingle();
+
+                        float rx = reader.ReadSingle();
+                        float ry = reader.ReadSingle();
+                        float rz = reader.ReadSingle();
+                        float rw = reader.ReadSingle();
+
+                        float lx = reader.ReadSingle();
+                        float ly = reader.ReadSingle();
+                        float lz = reader.ReadSingle();
+
+                        this.obj = new Transform3D(new Vector3(px, py, pz), new Quaternion(rx, ry, rz, rw), new Vector3(lx, ly, lz));
+                    }
+                    break;
+
                 case ValueTypeID.Color:
                     {
                         float r = reader.ReadSingle();
