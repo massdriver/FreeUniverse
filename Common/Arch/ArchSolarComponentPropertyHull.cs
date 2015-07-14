@@ -13,6 +13,7 @@ namespace FreeUniverse.Common.Arch
         public bool staticHull { get; private set; }
         public bool collideWithWorld { get; private set; }
         public bool useCustomColliders { get; private set; }
+        public string assetPath { get; private set; }
 
         public static readonly string LinearDrag = "linearDrag";
         public static readonly string AngularDrag = "angularDrag";
@@ -20,6 +21,8 @@ namespace FreeUniverse.Common.Arch
         public static readonly string StaticHull = "staticHull";
         public static readonly string CollideWithWorld = "collideWithWorld";
         public static readonly string UseCustomColliders = "useCustomColliders";
+
+        public static readonly string AssetPath = "assetPath";
 
         public ArchSolarComponentPropertyHull()
         {
@@ -36,6 +39,7 @@ namespace FreeUniverse.Common.Arch
             staticHull = pmap[StaticHull];
             collideWithWorld = pmap[CollideWithWorld];
             useCustomColliders = pmap[UseCustomColliders];
+            assetPath = pmap[AssetPath];
         }
 
         public override ValueMap WriteToValueMap()
@@ -48,6 +52,7 @@ namespace FreeUniverse.Common.Arch
             pmap[StaticHull] = staticHull;
             pmap[CollideWithWorld] = collideWithWorld;
             pmap[UseCustomColliders] = useCustomColliders;
+            pmap[AssetPath] = assetPath;
 
             return pmap;
         }

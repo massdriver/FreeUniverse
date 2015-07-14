@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace FreeUniverse.Common.Unity
 {
-    public class EditableObjectDescriptor : MonoBehaviour
+    public class EditableObjectDescriptor : MonoBehaviour, IValueMapSerializable
     {
         public string nickname;
         
@@ -19,7 +19,12 @@ namespace FreeUniverse.Common.Unity
         [Multiline]
         public string idsDescription;
 
-        public virtual ValueMap ToValueMap()
+        public void ReadFromValueMap(ValueMap map)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ValueMap WriteToValueMap()
         {
             ValueMap pmap = new ValueMap();
 

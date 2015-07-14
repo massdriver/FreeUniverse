@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEditor;
 using UnityEngine;
 
 namespace FreeUniverse.Common.Unity.Solar
@@ -37,8 +38,19 @@ namespace FreeUniverse.Common.Unity.Solar
             pmap[ArchSolarComponentPropertyHull.StaticHull] = staticHull;
             pmap[ArchSolarComponentPropertyHull.CollideWithWorld] = collideWithWorld;
             pmap[ArchSolarComponentPropertyHull.UseCustomColliders] = useCustomColliders;
+            pmap[ArchSolarComponentPropertyHull.AssetPath] = GetVisualMeshPath();
 
             return pmap;
+        }
+
+        private string GetVisualMeshPath()
+        {
+            MeshFilter meshFilter = gameObject.GetComponent<MeshFilter>();
+
+            if (meshFilter == null || meshFilter.mesh == null )
+                throw new Exception("No mesh was assigned to component root");
+
+            return AssetDatabase.GetAssetPath(meshFilter.mesh);
         }
     }
 }

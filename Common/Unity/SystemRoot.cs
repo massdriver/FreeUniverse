@@ -12,14 +12,5 @@ namespace FreeUniverse.Common.Unity
     {
         public string backgroundMusic;
 
-        public override ValueMap ToValueMap()
-        {
-            ValueMap pmap = base.ToValueMap();
-
-            pmap["backgroundMusic"] = backgroundMusic;
-
-            return pmap;
-        }
-
     }
 }

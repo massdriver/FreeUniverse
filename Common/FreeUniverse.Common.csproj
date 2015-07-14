@@ -74,6 +74,7 @@
     <Compile Include="Arch\ArchComponentHardpoint.cs" />
     <Compile Include="Arch\ArchConst.cs" />
     <Compile Include="Arch\ArchFaction.cs" />
+    <Compile Include="Arch\ArchManager.cs" />
     <Compile Include="Arch\ArchObject.cs" />
     <Compile Include="Arch\ArchSolar.cs" />
     <Compile Include="Arch\ArchSolarComponent.cs" />
