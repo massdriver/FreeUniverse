@@ -5,8 +5,11 @@ using System.Text;
 
 namespace FreeUniverse.Common.Arch
 {
-    public class ArchSolarComponentProperty : ArchObject
+    public class ArchSolarComponentProperty
     {
-
+        [FieldCopy]
+        public float mass { get; set; }
+        [FieldCopy]
+        public bool swapable { get; set; }
     }
 }

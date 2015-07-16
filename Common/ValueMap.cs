@@ -11,7 +11,6 @@ using System.Collections;
 
 namespace FreeUniverse.Common
 {
-
 #if UNITY_ENGINE
     public struct Transform3D
     {
@@ -565,6 +564,9 @@ namespace FreeUniverse.Common
 
         public static Value[] ListToValueArray<T>(List<T> lst)
         {
+            if (lst == null)
+                return null;
+
             if (lst.Count == 0)
                 return null;
 

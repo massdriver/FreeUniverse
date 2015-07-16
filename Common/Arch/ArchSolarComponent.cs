@@ -5,13 +5,15 @@ using System.Text;
 
 namespace FreeUniverse.Common.Arch
 {
-    public class ArchSolarComponent : ArchObject
+    public sealed class ArchSolarComponent : ArchObject
     {
+        [FieldCopy]
         public List<ArchComponentHardpoint> hardpoints { get; set; }
 
         public ArchSolarComponent()
         {
             hardpoints = new List<ArchComponentHardpoint>();
         }
+
     }
 }

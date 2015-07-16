@@ -23,26 +23,6 @@ namespace FreeUniverse.Common.Unity.Solar
         [Tooltip("Use child colliders for this rigid or use convex mesh")]
         public bool useCustomColliders = true;
 
-        public override sealed void ReadFromValueMap(ValueMap map)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override sealed ValueMap WriteToValueMap()
-        {
-            ValueMap pmap = base.WriteToValueMap();
-
-            pmap[ArchSolarComponentPropertyHull.LinearDrag] = linearDrag;
-            pmap[ArchSolarComponentPropertyHull.AngularDrag] = angularDrag;
-            pmap[ArchSolarComponentPropertyHull.HitPoints] = hitPoints;
-            pmap[ArchSolarComponentPropertyHull.StaticHull] = staticHull;
-            pmap[ArchSolarComponentPropertyHull.CollideWithWorld] = collideWithWorld;
-            pmap[ArchSolarComponentPropertyHull.UseCustomColliders] = useCustomColliders;
-            pmap[ArchSolarComponentPropertyHull.AssetPath] = GetVisualMeshPath();
-
-            return pmap;
-        }
-
         private string GetVisualMeshPath()
         {
             MeshFilter meshFilter = gameObject.GetComponent<MeshFilter>();

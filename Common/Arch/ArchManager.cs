@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FreeUniverse.Common.Arch
 {
-    public class ArchManager
+    public sealed class ArchManager
     {
         private ArchObject[] indexedArches { get; set; }
         

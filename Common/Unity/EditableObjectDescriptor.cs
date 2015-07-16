@@ -6,34 +6,21 @@ using UnityEngine;
 
 namespace FreeUniverse.Common.Unity
 {
-    public class EditableObjectDescriptor : MonoBehaviour, IValueMapSerializable
+    // matches ArchObject
+    public class EditableObjectDescriptor : MonoBehaviour
     {
+        [FieldCopy]
         public string nickname;
-        
-        [Multiline]
-        public string idsObjectName;
-
-        [Multiline]
+        [FieldCopy]
         public string idsInfo;
-        
-        [Multiline]
+        [FieldCopy]
+        public string idsObjectName;
+        [FieldCopy]
         public string idsDescription;
 
-        public void ReadFromValueMap(ValueMap map)
+        public virtual void PrepareForCopy()
         {
-            throw new NotImplementedException();
-        }
 
-        public ValueMap WriteToValueMap()
-        {
-            ValueMap pmap = new ValueMap();
-
-            pmap[ArchConst.Nickname] = nickname;
-            pmap[ArchConst.IdsInfo] = idsInfo;
-            pmap[ArchConst.IdsObjectName] = idsObjectName;
-            pmap[ArchConst.IdsDescription] = idsDescription;
-
-            return pmap;
         }
     }
 }

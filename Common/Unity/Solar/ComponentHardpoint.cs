@@ -10,12 +10,6 @@ namespace FreeUniverse.Common.Unity.Solar
     {
         public string hardpointType = "hp_any";
 
-        public static readonly string HpName = "hpname";
-        public static readonly string HpRotation = "hprot";
-        public static readonly string HpPosition = "hppos";
-        public static readonly string HpType = "hptype";
-        public static readonly string HpTransform3D = "hptransform3d";
-
         public void ReadFromValueMap(ValueMap map)
         {
             throw new NotImplementedException();
@@ -25,9 +19,10 @@ namespace FreeUniverse.Common.Unity.Solar
         {
             ValueMap pmap = new ValueMap();
 
-            pmap[HpName] = gameObject.name;
-            pmap[HpType] = hardpointType;
-            pmap[HpTransform3D] = new Transform3D(gameObject.transform);
+            pmap[Arch.ArchConst.Id] = Hash.FromString64(gameObject.name);
+            pmap[Arch.ArchConst.Nickname] = gameObject.name;
+            pmap[Arch.ArchComponentHardpoint.HpType] = hardpointType;
+            pmap[Arch.ArchComponentHardpoint.HpTransform3D] = new Transform3D(gameObject.transform);
 
             return pmap;
         }

@@ -79,8 +79,10 @@
     <Compile Include="Arch\ArchSolar.cs" />
     <Compile Include="Arch\ArchSolarComponent.cs" />
     <Compile Include="Arch\ArchSolarComponentProperty.cs" />
+    <Compile Include="Arch\ArchSolarComponentPropertyEngine.cs" />
     <Compile Include="Arch\ArchSolarComponentPropertyHull.cs" />
     <Compile Include="Assist.cs" />
+    <Compile Include="FieldCopySerializer.cs" />
     <Compile Include="IBinarySerializable.cs" />
     <Compile Include="IValueMapSerializable.cs" />
     <Compile Include="Shared\CharacterDesc.cs" />
@@ -149,6 +151,7 @@
     <Compile Include="Unity\SystemExporter.cs" />
     <Compile Include="Unity\SystemRoot.cs" />
     <Compile Include="Unity\SystemStaticSolar.cs" />
+    <Compile Include="World\HumanInputController.cs" />
     <Compile Include="World\SolarComponent.cs" />
     <Compile Include="World\Solar.cs" />
     <Compile Include="World\SolarComponentHardpoint.cs" />
@@ -166,6 +169,7 @@
     <Compile Include="World\SolarComponentPropertyWeapon.cs" />
     <Compile Include="World\SolarController.cs" />
     <Compile Include="World\SolarControllerHuman.cs" />
+    <Compile Include="World\SolarControlPanel.cs" />
     <Compile Include="World\WorldController.cs" />
     <Compile Include="World\WorldControllerClient.cs" />
   </ItemGroup>

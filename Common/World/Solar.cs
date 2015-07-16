@@ -14,6 +14,7 @@ namespace FreeUniverse.Common.World
         public WorldController worldController { get; private set; }
         public bool valid { get; set; }
         public SolarComponent rootComponent { get; private set; }
+        public SolarControlPanel controlPanel { get; private set; }
 
         private Dictionary<uint, SolarComponent> components { get; set; }
 
@@ -23,6 +24,7 @@ namespace FreeUniverse.Common.World
             this.worldController = worldController;
             this.id = id;
             this.components = new Dictionary<uint, SolarComponent>();
+            this.controlPanel = new SolarControlPanel(this);
 
             CreateComponents(arch);
         }

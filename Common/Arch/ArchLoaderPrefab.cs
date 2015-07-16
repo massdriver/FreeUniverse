@@ -23,14 +23,15 @@ namespace FreeUniverse.Common.Unity
 
         private void LoadArchFromGameObject(GameObject obj)
         {
-            ComponentType ct = obj.GetComponent<ComponentType>();
+            throw new NotImplementedException();
+            //ComponentType ct = obj.GetComponent<ComponentType>();
 
-            if (ct == null)
-                return;
+            //if (ct == null)
+            //    return;
 
-            ArchType archObj = new ArchType();
-            archObj.ReadFromValueMap(ct.WriteToValueMap());
-            descriptors.Add(archObj.id, archObj);
+            //ArchType archObj = new ArchType();
+            //archObj.ReadFromValueMap(ct.WriteToValueMap());
+            //descriptors.Add(archObj.id, archObj);
         }
 
         private Dictionary<ulong, ArchType> descriptors { get; set; }
