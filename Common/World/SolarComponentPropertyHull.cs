@@ -14,7 +14,7 @@ namespace FreeUniverse.Common.World
         public float maxHitPoints { get; private set; }
         public GameObject worldObject { get; private set; }
 
-        public SolarComponentPropertyHull(SolarComponent component, ArchSolarComponentPropertyHull arch)
+        public SolarComponentPropertyHull(SolarComponent component, ArchSolarComponentPropertyRigidHull arch)
             : base(component)
         {
 

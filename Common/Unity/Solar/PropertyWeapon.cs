@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FreeUniverse.Common.Unity.Solar
 {
-    public class PropertyWeapon : ComponentProperty
+    public sealed class PropertyWeapon : ComponentProperty
     {
     }
 }

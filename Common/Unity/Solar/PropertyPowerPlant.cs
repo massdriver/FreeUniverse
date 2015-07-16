@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FreeUniverse.Common.Unity.Solar
 {
-    public class PropertyPowerPlant : ComponentProperty
+    public sealed class PropertyPowerPlant : ComponentProperty
     {
         public float generatorPower = 1.0f;
     }

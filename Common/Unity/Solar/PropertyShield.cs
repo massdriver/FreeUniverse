@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FreeUniverse.Common.Unity.Solar
 {
-    public class PropertyShield : ComponentProperty
+    public sealed class PropertyShield : ComponentProperty
     {
     }
 }

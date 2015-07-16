@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FreeUniverse.Common.Unity.Solar
 {
-    public class PropertyArmor : ComponentProperty
+    public sealed class PropertyArmor : ComponentProperty
     {
         [FieldCopy]
         public float hitPoints = 1.0f;

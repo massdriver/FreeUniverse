@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FreeUniverse.Common.Arch
 {
-    public sealed class ArchSolarComponentPropertyHull : ArchSolarComponentProperty
+    public sealed class ArchSolarComponentPropertyRigidHull : ArchSolarComponentProperty
     {
         [FieldCopy]
         public float linearDrag { get; set; }
@@ -27,12 +27,5 @@ namespace FreeUniverse.Common.Arch
 
         [FieldCopy]
         public string assetPath { get; set; }
-
-        public ArchSolarComponentPropertyHull()
-        {
-
-        }
-
-
     }
 }

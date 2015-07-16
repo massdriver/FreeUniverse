@@ -35,9 +35,9 @@ namespace FreeUniverse.Common.World
         {
             Type archType = arch.GetType();
 
-            if (archType == typeof(ArchSolarComponentPropertyHull))
+            if (archType == typeof(ArchSolarComponentPropertyRigidHull))
             {
-                SolarComponentPropertyHull hull = new SolarComponentPropertyHull(this, arch as ArchSolarComponentPropertyHull);
+                SolarComponentPropertyHull hull = new SolarComponentPropertyHull(this, arch as ArchSolarComponentPropertyRigidHull);
                 properties[typeof(SolarComponentPropertyHull)] = hull;
                 return hull as T;
             }

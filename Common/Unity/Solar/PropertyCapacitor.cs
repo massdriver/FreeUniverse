@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace FreeUniverse.Common.Unity.Solar
 {
-    public class PropertyCapacitor : ComponentProperty
+    public sealed class PropertyCapacitor : ComponentProperty
     {
         [Tooltip("Overall power stored")]
         public float capacity = 1.0f;

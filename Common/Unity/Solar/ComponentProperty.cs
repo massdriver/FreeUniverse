@@ -12,5 +12,10 @@ namespace FreeUniverse.Common.Unity.Solar
         public float mass = 1.0f;
         [FieldCopy]
         public bool swapable = false;
+
+        public virtual void PrepareForCopy()
+        {
+
+        }
     }
 }

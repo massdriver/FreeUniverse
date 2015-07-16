@@ -8,18 +8,27 @@ using UnityEngine;
 
 namespace FreeUniverse.Common.Unity.Solar
 {
-    public class PropertyRigidHull : ComponentProperty
+    [FieldCopyReminder(typeof(ArchSolarComponentPropertyRigidHull))]
+    public sealed class PropertyRigidHull : ComponentProperty
     {
+        [FieldCopy]
         public float linearDrag = 0.1f;
+
+        [FieldCopy]
         public float angularDrag = 0.1f;
 
+        [FieldCopy]
         [Tooltip("Zero or less means that hull is indestructile")]
         public float hitPoints = 1.0f;
+
+        [FieldCopy]
         public bool staticHull = false;
 
+        [FieldCopy]
         [Tooltip("Enable collision with other world objects and projectiles")]
         public bool collideWithWorld = true;
 
+        [FieldCopy]
         [Tooltip("Use child colliders for this rigid or use convex mesh")]
         public bool useCustomColliders = true;
 

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace FreeUniverse.Common.Unity.Solar
 {
-    public class PropertyEngine : ComponentProperty
+    public sealed class PropertyEngine : ComponentProperty
     {
         [FieldCopy]
         public float forceForward = 1.0f;

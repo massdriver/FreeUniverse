@@ -11,11 +11,19 @@ namespace FreeUniverse.Common
         public string name { get; set; }
     }
 
+    public sealed class FieldCopyReminderAttribute : Attribute
+    {
+        public FieldCopyReminderAttribute(Type type)
+        {
+
+        }
+    }
+
     public static class FieldCopySerializer<S, D>
         where S : class
         where D : class
     {
-        public static int CopyValuesByNames(S source, D destination)
+        public static D CopyValuesByNames(S source, D destination)
         {
             int copied = 0;
 
@@ -95,7 +103,7 @@ namespace FreeUniverse.Common
                 }
             }
 
-            return copied;
+            return destination;
         }
         
         public static int CopyValues(S source, D destination)

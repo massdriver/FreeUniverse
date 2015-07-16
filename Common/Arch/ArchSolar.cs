@@ -9,10 +9,5 @@ namespace FreeUniverse.Common.Arch
     {
         [FieldCopy]
         public List<ArchSolarComponent> components { get; set; }
-
-        public ArchSolar()
-        {
-            components = new List<ArchSolarComponent>();
-        }
     }
 }

@@ -80,7 +80,7 @@
     <Compile Include="Arch\ArchSolarComponent.cs" />
     <Compile Include="Arch\ArchSolarComponentProperty.cs" />
     <Compile Include="Arch\ArchSolarComponentPropertyEngine.cs" />
-    <Compile Include="Arch\ArchSolarComponentPropertyHull.cs" />
+    <Compile Include="Arch\ArchSolarComponentPropertyRigidHull.cs" />
     <Compile Include="Assist.cs" />
     <Compile Include="FieldCopySerializer.cs" />
     <Compile Include="IBinarySerializable.cs" />
@@ -122,7 +122,6 @@
     <Compile Include="Procedural\System\SystemGeneratorParams.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Arch\ArchLoaderPrefab.cs" />
-    <Compile Include="Unity\DescriptorSolar.cs" />
     <Compile Include="Unity\GalaxyGenerator.cs" />
     <Compile Include="Unity\MovableCamera.cs" />
     <Compile Include="Unity\Solar\ComponentHardpoint.cs" />
@@ -135,7 +134,7 @@
     <Compile Include="Unity\Solar\PropertyPowerPlant.cs" />
     <Compile Include="Unity\Solar\PropertyRepairKit.cs" />
     <Compile Include="Unity\Solar\PropertyRigidHull.cs" />
-    <Compile Include="Unity\Solar\DescriptorSolarRoot.cs" />
+    <Compile Include="Unity\Solar\DescriptorSolar.cs" />
     <Compile Include="Unity\Solar\PropertyShield.cs" />
     <Compile Include="Unity\Solar\PropertyWeapon.cs" />
     <Compile Include="Unity\UIButtonImage.cs" />

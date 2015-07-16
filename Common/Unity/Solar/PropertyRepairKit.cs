@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FreeUniverse.Common.Unity.Solar
 {
-    public class PropertyRepairKit : ComponentProperty
+    public sealed class PropertyRepairKit : ComponentProperty
     {
     }
 }

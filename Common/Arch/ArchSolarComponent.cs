@@ -9,11 +9,5 @@ namespace FreeUniverse.Common.Arch
     {
         [FieldCopy]
         public List<ArchComponentHardpoint> hardpoints { get; set; }
-
-        public ArchSolarComponent()
-        {
-            hardpoints = new List<ArchComponentHardpoint>();
-        }
-
     }
 }
