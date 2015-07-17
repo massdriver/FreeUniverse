@@ -13,9 +13,9 @@ namespace FreeUniverse.Common.Unity.Solar
         [FieldCopy]
         public bool swapable = false;
 
-        public virtual void PrepareForCopy()
+        public virtual Arch.ArchSolarComponentProperty ToArchProperty()
         {
-
+            return null;
         }
     }
 }

@@ -6,8 +6,7 @@ using UnityEngine;
 
 namespace FreeUniverse.Common.Unity
 {
-    // matches ArchObject
-    public class EditableObjectDescriptor : MonoBehaviour
+    public class DescriptorArch : MonoBehaviour
     {
         [FieldCopy]
         public string nickname;
@@ -17,10 +16,15 @@ namespace FreeUniverse.Common.Unity
         public string idsObjectName;
         [FieldCopy]
         public string idsDescription;
+    }
 
-        public virtual void PrepareForCopy()
+    // matches ArchObject
+    public class EditableArchDescriptor : DescriptorArch
+    {
+        public virtual ArchObject ToArchObject()
         {
-
+            return null;
         }
+
     }
 }

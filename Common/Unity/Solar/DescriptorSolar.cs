@@ -19,7 +19,7 @@ namespace FreeUniverse.Common.Unity.Solar
             {
                 DescriptorSolar solarRoot = (DescriptorSolar)target;
 
-                solarRoot.PrepareForCopy();
+                ArchSolar archSolar = solarRoot.ToArchObject() as ArchSolar;
             }
 
 
@@ -27,16 +27,14 @@ namespace FreeUniverse.Common.Unity.Solar
     }
 
     [FieldCopyReminder(typeof(ArchSolar))]
-    public sealed class DescriptorSolar : EditableObjectDescriptor
+    public sealed class DescriptorSolar : EditableArchDescriptor
     {
         [FieldCopy]
         public List<ArchSolarComponent> components { get; set; }
 
-        public override void PrepareForCopy()
+        public override ArchObject ToArchObject()
         {
-            base.PrepareForCopy();
-
-            // Process child components
+            // Process components
             {
                 components = new List<ArchSolarComponent>();
 
@@ -47,10 +45,12 @@ namespace FreeUniverse.Common.Unity.Solar
                     if (component == null)
                         continue;
 
-                    component.PrepareForCopy();
-                    components.Add(FieldCopySerializer<DescriptorSolarComponent, ArchSolarComponent>.CopyValuesByNames(component, new ArchSolarComponent()));
+                    components.Add(component.ToArchObject() as ArchSolarComponent);
                 }
             }
+
+            return ArchObject.Convert<DescriptorSolar, ArchSolar>(this);
         }
+
     }
 }

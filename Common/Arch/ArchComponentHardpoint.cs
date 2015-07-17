@@ -9,7 +9,8 @@ namespace FreeUniverse.Common.Arch
     {
         [FieldCopy]
         public Transform3D hardpointTransform { get; set; }
-        public string hardpointType { get; set; }
 
+        [FieldCopy]
+        public string hardpointType { get; set; }
     }
 }
