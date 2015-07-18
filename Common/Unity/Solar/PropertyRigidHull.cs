@@ -32,14 +32,12 @@ namespace FreeUniverse.Common.Unity.Solar
         [Tooltip("Use child colliders for this rigid or use convex mesh")]
         public bool useCustomColliders = true;
 
-        private string GetVisualMeshPath()
+        [FieldCopy]
+        public string assetPath;
+
+        public override ArchSolarComponentProperty ToArchProperty()
         {
-            MeshFilter meshFilter = gameObject.GetComponent<MeshFilter>();
-
-            if (meshFilter == null || meshFilter.mesh == null )
-                throw new Exception("No mesh was assigned to component root");
-
-            return AssetDatabase.GetAssetPath(meshFilter.mesh);
+            return ArchSolarComponentProperty.Convert<PropertyRigidHull, ArchSolarComponentPropertyRigidHull>(this);
         }
     }
 }

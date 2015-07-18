@@ -20,6 +20,8 @@ namespace FreeUniverse.Common.Unity.Solar
                 DescriptorSolar solarRoot = (DescriptorSolar)target;
 
                 ArchSolar archSolar = solarRoot.ToArchObject() as ArchSolar;
+
+
             }
 
 

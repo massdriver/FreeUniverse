@@ -7,5 +7,9 @@ namespace FreeUniverse.Common.Unity.Solar
 {
     public sealed class PropertyRepairKit : ComponentProperty
     {
+        [FieldCopy]
+        public float repairCapacity;
+        [FieldCopy]
+        public float repairRate;
     }
 }

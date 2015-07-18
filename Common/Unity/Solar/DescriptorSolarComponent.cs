@@ -40,7 +40,7 @@ namespace FreeUniverse.Common.Unity.Solar
             return property.ToArchProperty() as T;
         }
 
-        private void AddProperty<D, T>()
+        private void AddProperty<D, T>(List<ArchSolarComponentProperty> lst)
             where T : Arch.ArchSolarComponentProperty
             where D : ComponentProperty
         {
@@ -49,15 +49,15 @@ namespace FreeUniverse.Common.Unity.Solar
             if (archProperty == null)
                 return;
 
-            properties.Add(archProperty);
+            lst.Add(archProperty);
         }
 
         private List<ArchSolarComponentProperty> GetProperties()
         {
             List<ArchSolarComponentProperty> properties = new List<ArchSolarComponentProperty>();
 
-            AddProperty<PropertyRigidHull, ArchSolarComponentPropertyRigidHull>();
-            AddProperty<PropertyEngine, ArchSolarComponentPropertyEngine>();
+            AddProperty<PropertyRigidHull, ArchSolarComponentPropertyRigidHull>(properties);
+            AddProperty<PropertyEngine, ArchSolarComponentPropertyEngine>(properties);
 
             return properties;
         }

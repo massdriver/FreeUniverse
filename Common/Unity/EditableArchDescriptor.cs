@@ -11,10 +11,13 @@ namespace FreeUniverse.Common.Unity
         [FieldCopy]
         public string nickname;
         [FieldCopy]
+        [Multiline]
         public string idsInfo;
         [FieldCopy]
+        [Multiline]
         public string idsObjectName;
         [FieldCopy]
+        [Multiline]
         public string idsDescription;
     }
 

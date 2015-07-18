@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FreeUniverse.Common.Arch;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,5 +42,10 @@ namespace FreeUniverse.Common.Unity.Solar
 
         [FieldCopy]
         public bool useGlobalVelocityLimitMod = false;
+
+        public override ArchSolarComponentProperty ToArchProperty()
+        {
+            return ArchSolarComponentProperty.Convert<PropertyEngine, ArchSolarComponentPropertyEngine>(this);
+        }
     }
 }
