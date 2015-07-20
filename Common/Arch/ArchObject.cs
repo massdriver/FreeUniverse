@@ -32,5 +32,10 @@ namespace FreeUniverse.Common.Arch
         {
             return FieldCopySerializer<D, T>.CopyValuesByNames(desc, new T()).SetID(desc.nickname) as T;
         }
+
+        public virtual bool Validate()
+        {
+            return id != 0 && nickname.Length > 0;
+        }
     }
 }

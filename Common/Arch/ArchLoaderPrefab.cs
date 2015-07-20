@@ -23,7 +23,7 @@ namespace FreeUniverse.Common.Arch
                 LoadArchFromGameObject(obj);
 
                 // MH: release here since many arches may eat a lot of memory
-                UnityEngine.Object.DestroyImmediate(obj);
+                //Resources.UnloadUnusedAssets();
             }
         }
 

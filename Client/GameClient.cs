@@ -10,6 +10,7 @@ using FreeUniverse.Common.Network.Messages;
 using UnityEngine;
 using Lidgren.Network;
 using FreeUniverse.Common.Shared;
+using FreeUniverse.Common.World;
 
 namespace FreeUniverse
 {
@@ -21,12 +22,15 @@ namespace FreeUniverse
         private NetworkClient loginClient { get; set; }
         private LoginServerDelegate loginDelegate { get; set; }
         private PlayerAccountDesc playerAccountInfo { get; set; }
+        private WorldControllerClient worldControllerClient { get; set; }
 
         public static GameClient instance { get; set; }
 
         public GameClient()
         {
             instance = this;
+
+            worldControllerClient = new WorldControllerClient(WorldControllerClient.DEFAULT_LAYER);
         }
 
         public void Init()
@@ -53,6 +57,9 @@ namespace FreeUniverse
 
             if (viewControllerCreateAccount != null)
                 viewControllerCreateAccount.Update(dt);
+
+            if (worldControllerClient != null)
+                worldControllerClient.Update(dt);
             
         }
 

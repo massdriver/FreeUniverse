@@ -13,47 +13,6 @@ using FreeUniverse.Common.Shared;
 
 namespace FreeUniverse.Client
 {
-    public sealed class TestTableView :
-        ITableViewDataProvider,
-        ITableViewDelegate
-    {
-        private GameObject tablePanel { get; set; }
-        private UITableView tableView { get; set; }
-
-        public TestTableView(string panelNickname)
-        {
-            this.tablePanel = UnityEngine.GameObject.Find(panelNickname);
-
-            this.tableView = this.tablePanel.GetComponent<UITableView>();
-            this.tableView.tableViewDataProvider = this;
-            this.tableView.tableViewDelegate = this;
-            this.tableView.Reload();
-        }
-
-        public UITableViewParameters OnTableViewGetParameters(UITableView tableView)
-        {
-            UITableViewParameters p = new UITableViewParameters();
-
-            p.rows = 32;
-            p.initialScroll = 0.0f;
-            p.cellHeight = -1.0f;
-            p.cellWidth = -1.0f;
-
-            return p;
-        }
-
-        public void OnTableViewSetupCell(UITableView tableView, UITableViewCell cell)
-        {
-            Text txt = cell.GetElement<Text>("character_name");
-            txt.text = "char " + cell.row;
-        }
-
-        public void OnTableViewRowSelected(UITableView tableView, UITableViewCell cell)
-        {
-            Debug.Log("selected=" + cell.row);
-        }
-    }
-
     public sealed class StartupController : MonoBehaviour
     {
         public GameObject mainCamera;
@@ -67,15 +26,14 @@ namespace FreeUniverse.Client
         {
             FreeUniverse.Common.UI.External.Init();
 
+            ArchManager archManager = new ArchManager();
+            archManager.LoadArchesFromPrefabs();
+
             //gameClient = new GameClient();
            // gameClient.Init();
 
             //StartServers();
-
-            someTableView = new TestTableView("panel_tableview");
         }
-
-        private TestTableView someTableView { get; set; }
 
         void Update()
         {

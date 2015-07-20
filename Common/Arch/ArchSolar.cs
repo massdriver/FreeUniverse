@@ -9,5 +9,10 @@ namespace FreeUniverse.Common.Arch
     {
         [FieldCopy]
         public List<ArchSolarComponent> components { get; set; }
+
+        public override bool Validate()
+        {
+            return base.Validate() && components.Count > 0;
+        }
     }
 }
