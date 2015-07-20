@@ -19,5 +19,10 @@ namespace FreeUniverse.Common.Arch
         {
             return FieldCopySerializer<D, T>.CopyValuesByNames(desc, new T()) as T;
         }
+
+        public T Cast<T>() where T : ArchSolarComponentProperty
+        {
+            return this as T;
+        }
     }
 }

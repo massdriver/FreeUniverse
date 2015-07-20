@@ -37,7 +37,18 @@ namespace FreeUniverse.Common.Unity.Solar
 
         public override ArchSolarComponentProperty ToArchProperty()
         {
+            assetPath = GetAssetPath();
             return ArchSolarComponentProperty.Convert<PropertyRigidHull, ArchSolarComponentPropertyRigidHull>(this);
+        }
+
+        private string GetAssetPath()
+        {
+            Transform tr = gameObject.transform.Find("Asset");
+
+             if (tr == null)
+                throw new Exception("Solar component doesnt contain sub gameobject called 'Asset' that should be your visual asset ingame");
+
+             return AssetDatabase.GetAssetPath(PrefabUtility.GetPrefabParent(tr.gameObject));
         }
     }
 }

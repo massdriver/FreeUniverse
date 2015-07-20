@@ -70,6 +70,9 @@ namespace FreeUniverse.Common.Unity.Solar
             {
                 ComponentHardpoint hp = tr.gameObject.GetComponent<ComponentHardpoint>();
 
+                if (hp == null)
+                    continue;
+
                 hps.Add(hp.ToArchObject() as ArchComponentHardpoint);
             }
 
