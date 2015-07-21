@@ -6,7 +6,7 @@ using System.Text;
 
 namespace FreeUniverse.Common.World
 {
-    public sealed class Solar : IBaseObject
+    public sealed class Solar : IBaseObject, IStateSerializable
     {
         public uint id { get; private set; }
         public string nickname { get; set; }
@@ -90,6 +90,16 @@ namespace FreeUniverse.Common.World
 
             foreach (T property in properties)
                 property.Update(dt);
+        }
+
+        public ValueMap GetState()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetState(ValueMap map)
+        {
+            throw new NotImplementedException();
         }
     }
 }

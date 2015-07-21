@@ -7,12 +7,12 @@ using UnityEngine;
 
 namespace FreeUniverse.Common.World
 {
-    public sealed class SolarComponent : IBaseObject
+    public sealed class SolarComponent : IBaseObject, IStateSerializable
     {
         public ulong id { get; private set; }
         public Solar solar { get; private set; }
 
-        private Dictionary<uint, SolarComponentHardpoint> hardpoints { get; set; }
+        private Dictionary<ulong, SolarComponentHardpoint> hardpoints { get; set; }
         private Dictionary<Type, SolarComponentProperty> properties { get; set; }
 
         public SolarComponent(Solar solar, ArchSolarComponent arch)
@@ -20,9 +20,25 @@ namespace FreeUniverse.Common.World
             this.id = arch.id;
             this.solar = solar;
             this.properties = new Dictionary<Type, SolarComponentProperty>();
-            this.hardpoints = new Dictionary<uint, SolarComponentHardpoint>();
+            this.hardpoints = new Dictionary<ulong, SolarComponentHardpoint>();
+            
+            CreateProperties(arch); // should be first before creating hardpoints
+            CreateHardpoints(arch);
+        }
 
-            CreateProperties(arch);
+        private void CreateHardpoints(ArchSolarComponent arch)
+        {
+            SolarComponentPropertyRigidHull hull = GetProperty<SolarComponentPropertyRigidHull>();
+
+            if (hull == null)
+                return;
+
+            foreach (ArchComponentHardpoint hp in arch.hardpoints)
+            {
+                SolarComponentHardpoint hardpoint = new SolarComponentHardpoint(hp, hull);
+
+                hardpoints.Add(hardpoint.id, hardpoint);
+            }
         }
 
         private void CreateProperties(ArchSolarComponent arch)
@@ -68,6 +84,16 @@ namespace FreeUniverse.Common.World
         public void Update(float time)
         {
             
+        }
+
+        public ValueMap GetState()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetState(ValueMap map)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -12,12 +12,15 @@ namespace FreeUniverse.Common.World
     {
         public float hitPoints { get; private set; }
         public float maxHitPoints { get; private set; }
+
         public GameObject worldObject { get; private set; }
 
         public SolarComponentPropertyRigidHull(SolarComponent component, ArchSolarComponentPropertyRigidHull arch)
             : base(component)
         {
+            this.worldObject = UnityEngine.Object.Instantiate(Resources.Load(arch.assetPath)) as GameObject;
 
+            Assist.SetLayer(this.worldObject, component.solar.worldController.layer);
         }
     }
 }

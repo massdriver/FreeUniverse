@@ -7,7 +7,7 @@ using System.Text;
 
 namespace FreeUniverse.Common.World
 {
-    public class WorldController : IBaseObject
+    public class WorldController : IBaseObject, IStateSerializable
     {
         public int layer { get; private set; }
         protected NetworkMessageHandler messageHandler { get; set; }
@@ -60,6 +60,16 @@ namespace FreeUniverse.Common.World
         }
 
         public virtual void Release()
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual ValueMap GetState()
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void SetState(ValueMap map)
         {
             throw new NotImplementedException();
         }

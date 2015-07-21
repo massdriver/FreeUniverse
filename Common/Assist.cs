@@ -44,5 +44,15 @@ namespace FreeUniverse.Common
 
             return (T)Activator.CreateInstance(type);
         }
+
+        public static void SetLayer(GameObject obj, int layer)
+        {
+            foreach (Transform tr in obj.transform)
+            {
+                tr.gameObject.layer = layer;
+
+                SetLayer(tr.gameObject, layer);
+            }
+        }
     }
 }

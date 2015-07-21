@@ -84,6 +84,7 @@
     <Compile Include="Assist.cs" />
     <Compile Include="FieldCopySerializer.cs" />
     <Compile Include="IBinarySerializable.cs" />
+    <Compile Include="IStateSerializable.cs" />
     <Compile Include="IValueMapSerializable.cs" />
     <Compile Include="Shared\CharacterDesc.cs" />
     <Compile Include="Shared\CharacterReputation.cs" />
