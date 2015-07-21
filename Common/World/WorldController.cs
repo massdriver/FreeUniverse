@@ -29,7 +29,7 @@ namespace FreeUniverse.Common.World
 
         }
 
-        public Solar GetSolar(uint id)
+        public virtual Solar GetSolar(uint id)
         {
             Solar s = null;
 

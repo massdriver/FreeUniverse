@@ -160,7 +160,7 @@
     <Compile Include="World\SolarComponentPropertyCargo.cs" />
     <Compile Include="World\SolarComponentPropertyCloak.cs" />
     <Compile Include="World\SolarComponentPropertyEngine.cs" />
-    <Compile Include="World\SolarComponentPropertyHull.cs" />
+    <Compile Include="World\SolarComponentPropertyRigidHull.cs" />
     <Compile Include="World\SolarComponentPropertyJumpDrive.cs" />
     <Compile Include="World\SolarComponentPropertyPowerPlant.cs" />
     <Compile Include="World\SolarComponentPropertyRadar.cs" />

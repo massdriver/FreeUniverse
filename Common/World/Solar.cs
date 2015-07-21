@@ -16,22 +16,39 @@ namespace FreeUniverse.Common.World
         public SolarComponent rootComponent { get; private set; }
         public SolarControlPanel controlPanel { get; private set; }
 
-        private Dictionary<uint, SolarComponent> components { get; set; }
+        private List<SolarComponent> components { get; set; }
 
         public Solar(WorldController worldController, uint id, ArchSolar arch)
         {
             this.valid = true;
             this.worldController = worldController;
             this.id = id;
-            this.components = new Dictionary<uint, SolarComponent>();
+            this.components = new List<SolarComponent>();
             this.controlPanel = new SolarControlPanel(this);
 
-            CreateComponents(arch);
+            CreateSolarComponents(arch);
         }
 
-        private void CreateComponents(ArchSolar arch)
+        private void CreateSolarComponents(ArchSolar arch)
         {
+            foreach (ArchSolarComponent compArch in arch.components)
+                components.Add(new SolarComponent(this, compArch));
 
+            rootComponent = GetComponentByID(Hash.FromString64("root_component"));
+
+            if (rootComponent == null)
+                throw new Exception("Solar component doesnt contatin root component");
+        }
+
+        private SolarComponent GetComponentByID(ulong id)
+        {
+            foreach (SolarComponent comp in components)
+            {
+                if (comp.id == id)
+                    return comp;
+            }
+
+            return null;
         }
 
         public void Update(float dt)
@@ -39,26 +56,26 @@ namespace FreeUniverse.Common.World
             if (controller != null)
                 controller.Update(dt);
 
-            UpdateComponentProperties<SolarComponentPropertyHull>(dt);
+            UpdateComponentProperties<SolarComponentPropertyRigidHull>(dt);
         }
 
         public void Init()
         {
-            
+            throw new NotImplementedException();
         }
 
         public void Release()
         {
-            
+            throw new NotImplementedException();
         }
 
         public List<T> EnumerateProperties<T>() where T : SolarComponentProperty
         {
             List<T> lst = new List<T>();
 
-            foreach (KeyValuePair<uint, SolarComponent> pair in components)
+            foreach (SolarComponent comp in components)
             {
-                T component = pair.Value.GetProperty<T>();
+                T component = comp.GetProperty<T>();
 
                 if (component != null)
                     lst.Add(component);

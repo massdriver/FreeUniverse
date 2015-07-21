@@ -9,6 +9,7 @@ namespace FreeUniverse.Common.World
 {
     public sealed class SolarComponent : IBaseObject
     {
+        public ulong id { get; private set; }
         public Solar solar { get; private set; }
 
         private Dictionary<uint, SolarComponentHardpoint> hardpoints { get; set; }
@@ -16,9 +17,18 @@ namespace FreeUniverse.Common.World
 
         public SolarComponent(Solar solar, ArchSolarComponent arch)
         {
+            this.id = arch.id;
             this.solar = solar;
             this.properties = new Dictionary<Type, SolarComponentProperty>();
             this.hardpoints = new Dictionary<uint, SolarComponentHardpoint>();
+
+            CreateProperties(arch);
+        }
+
+        private void CreateProperties(ArchSolarComponent arch)
+        {
+            foreach (ArchSolarComponentProperty prop in arch.properties)
+                AddProperty(prop);
         }
 
         public T GetProperty<T>() where T : SolarComponentProperty
@@ -31,18 +41,18 @@ namespace FreeUniverse.Common.World
             return null;
         }
 
-        public T AddProperty<T>(ArchSolarComponentProperty arch) where T : SolarComponentProperty
+        public bool AddProperty(ArchSolarComponentProperty arch)
         {
             Type archType = arch.GetType();
 
             if (archType == typeof(ArchSolarComponentPropertyRigidHull))
             {
-                SolarComponentPropertyHull hull = new SolarComponentPropertyHull(this, arch as ArchSolarComponentPropertyRigidHull);
-                properties[typeof(SolarComponentPropertyHull)] = hull;
-                return hull as T;
+                SolarComponentPropertyRigidHull hull = new SolarComponentPropertyRigidHull(this, arch as ArchSolarComponentPropertyRigidHull);
+                properties[typeof(SolarComponentPropertyRigidHull)] = hull;
+                return true;
             }
 
-            return null;
+            return false;
         }
 
         public void Init()
