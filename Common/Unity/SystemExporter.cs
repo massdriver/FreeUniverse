@@ -22,6 +22,7 @@ namespace FreeUniverse.Common.Unity
             {
                 ArchSystem obj = ((SystemRoot)target).ToArchObject() as ArchSystem;
                 File.WriteAllText(EditorUtility.SaveFilePanelInProject("Save as txt arch", obj.nickname, "txt", null), JsonConvert.SerializeObject(obj, Formatting.Indented));
+                Debug.Log("System exported");
             }
         }
     }

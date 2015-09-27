@@ -21,6 +21,7 @@ namespace FreeUniverse.Common.Unity.Solar
             {
                 ArchSolar archSolar = ((DescriptorSolar)target).ToArchObject() as ArchSolar;
                 File.WriteAllText(EditorUtility.SaveFilePanelInProject("Save as txt arch", archSolar.nickname, "txt", null), JsonConvert.SerializeObject(archSolar, Formatting.Indented));
+                Debug.Log("Solar exported");
             }
         }
     }

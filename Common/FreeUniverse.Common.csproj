@@ -124,6 +124,7 @@
     <Compile Include="Procedural\System\SystemGeneratorParams.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Arch\ArchLoaderPrefab.cs" />
+    <Compile Include="Unity\DescriptorField.cs" />
     <Compile Include="Unity\GalaxyGenerator.cs" />
     <Compile Include="Unity\MovableCamera.cs" />
     <Compile Include="Unity\Solar\ComponentHardpoint.cs" />
