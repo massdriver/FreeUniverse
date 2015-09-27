@@ -17,13 +17,6 @@ namespace FreeUniverse.Common.Unity.Solar
         {
             base.OnInspectorGUI();
 
-            //if (GUILayout.Button("Validate"))
-           // {
-             //   DescriptorSolar solarRoot = (DescriptorSolar)target;
-
-             //   ArchSolar archSolar = solarRoot.ToArchObject() as ArchSolar;
-            //}
-
             if (GUILayout.Button("Export"))
             {
                 ArchSolar archSolar = ((DescriptorSolar)target).ToArchObject() as ArchSolar;

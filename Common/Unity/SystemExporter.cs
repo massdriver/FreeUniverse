@@ -1,6 +1,9 @@
 ﻿
+using FreeUniverse.Common.Arch;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using UnityEditor;
@@ -15,21 +18,11 @@ namespace FreeUniverse.Common.Unity
         {
             base.OnInspectorGUI();
 
-            if (GUILayout.Button("Export To File"))
+            if (GUILayout.Button("Export"))
             {
-                ExportSystemToFile(target as SystemRoot);
+                ArchSystem obj = ((SystemRoot)target).ToArchObject() as ArchSystem;
+                File.WriteAllText(EditorUtility.SaveFilePanelInProject("Save as txt arch", obj.nickname, "txt", null), JsonConvert.SerializeObject(obj, Formatting.Indented));
             }
-        }
-
-        private void ExportSystemToFile(SystemRoot root)
-        {
-            if (root == null)
-            {
-                Debug.Log("System root is null");
-                return;
-            }
-
-            //string path = EditorUtility.OpenFilePanel( "Save System", "", "system");
         }
     }
 }

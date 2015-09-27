@@ -81,6 +81,7 @@
     <Compile Include="Arch\ArchSolarComponentProperty.cs" />
     <Compile Include="Arch\ArchSolarComponentPropertyEngine.cs" />
     <Compile Include="Arch\ArchSolarComponentPropertyRigidHull.cs" />
+    <Compile Include="Arch\ArchSystem.cs" />
     <Compile Include="Assist.cs" />
     <Compile Include="FieldCopySerializer.cs" />
     <Compile Include="IBinarySerializable.cs" />
@@ -151,7 +152,6 @@
     <Compile Include="Unity\EditableArchDescriptor.cs" />
     <Compile Include="Unity\SystemExporter.cs" />
     <Compile Include="Unity\SystemRoot.cs" />
-    <Compile Include="Unity\SystemStaticSolar.cs" />
     <Compile Include="World\Base.cs" />
     <Compile Include="World\HumanInputController.cs" />
     <Compile Include="World\Market.cs" />
