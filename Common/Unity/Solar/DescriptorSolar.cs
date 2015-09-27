@@ -1,6 +1,8 @@
 ﻿using FreeUniverse.Common.Arch;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using UnityEditor;
@@ -15,18 +17,22 @@ namespace FreeUniverse.Common.Unity.Solar
         {
             base.OnInspectorGUI();
 
-            if (GUILayout.Button("Validate"))
+            //if (GUILayout.Button("Validate"))
+           // {
+             //   DescriptorSolar solarRoot = (DescriptorSolar)target;
+
+             //   ArchSolar archSolar = solarRoot.ToArchObject() as ArchSolar;
+            //}
+
+            if (GUILayout.Button("Export"))
             {
-                DescriptorSolar solarRoot = (DescriptorSolar)target;
-
-                ArchSolar archSolar = solarRoot.ToArchObject() as ArchSolar;
+                ArchSolar archSolar = ((DescriptorSolar)target).ToArchObject() as ArchSolar;
+                File.WriteAllText(EditorUtility.SaveFilePanelInProject("Save as txt arch", archSolar.nickname, "txt", null), JsonConvert.SerializeObject(archSolar, Formatting.Indented));
             }
-
-
         }
     }
 
-    [FieldCopyReminder(typeof(ArchSolar))]
+    [FieldCopyTarget(typeof(ArchSolar))]
     public sealed class DescriptorSolar : EditableArchDescriptor
     {
         [FieldCopy]

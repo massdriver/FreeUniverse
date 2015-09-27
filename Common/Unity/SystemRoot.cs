@@ -12,5 +12,6 @@ namespace FreeUniverse.Common.Unity
     {
         public string backgroundMusic;
 
+        public string starspherePrefab;
     }
 }

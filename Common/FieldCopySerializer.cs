@@ -6,14 +6,17 @@ using System.Text;
 
 namespace FreeUniverse.Common
 {
+    // FieldCopyAttribute is used along with unity scripts to simplify conversion from and to by field/property names
+    // type check applied
     public sealed class FieldCopyAttribute : Attribute
     {
         public string name { get; set; }
     }
 
-    public sealed class FieldCopyReminderAttribute : Attribute
+    // Just a reminder class to show which class is used for field copy as target
+    public sealed class FieldCopyTargetAttribute : Attribute
     {
-        public FieldCopyReminderAttribute(Type type)
+        public FieldCopyTargetAttribute(Type type)
         {
 
         }

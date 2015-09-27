@@ -12,7 +12,7 @@ namespace FreeUniverse.Common.Arch
 
         public override bool Validate()
         {
-            return base.Validate() && components.Count > 0;
+            return base.Validate() && components != null && components.Count > 0;
         }
     }
 }

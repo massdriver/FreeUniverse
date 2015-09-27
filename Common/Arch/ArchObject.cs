@@ -11,7 +11,7 @@ namespace FreeUniverse.Common.Arch
         public ulong id { get; set; }
         public uint index { get; set; } // MH: optimized arch id, globaly unique after all arches loaded
 
-        public ArchObject SetID(string nickname)
+        protected ArchObject SetID(string nickname)
         {
             id = Hash.FromString64(nickname);
             return this;

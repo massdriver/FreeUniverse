@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace FreeUniverse.Common.Unity.Solar
 {
-    [FieldCopyReminder(typeof(ArchSolarComponentPropertyRigidHull))]
+    [FieldCopyTarget(typeof(ArchSolarComponentPropertyRigidHull))]
     public sealed class PropertyRigidHull : ComponentProperty
     {
         [FieldCopy]
@@ -41,14 +41,19 @@ namespace FreeUniverse.Common.Unity.Solar
             return ArchSolarComponentProperty.Convert<PropertyRigidHull, ArchSolarComponentPropertyRigidHull>(this);
         }
 
+        private static readonly string PATH_GUESS = "Assets/Resources/";
+
         private string GetAssetPath()
         {
-            Transform tr = gameObject.transform.Find("Asset");
+            Transform tr = gameObject.transform.GetChild(0);
 
              if (tr == null)
-                throw new Exception("Solar component doesnt contain sub gameobject called 'Asset' that should be your visual asset ingame");
+                throw new Exception("Solar component should contain exactly one child prefab that will be used to represent your object in game visually");
 
-             return AssetDatabase.GetAssetPath(PrefabUtility.GetPrefabParent(tr.gameObject));
+            string fullPath = AssetDatabase.GetAssetPath(PrefabUtility.GetPrefabParent(tr.gameObject));
+
+            // GetAssetPath returns full path in form of Assets/Resources/
+            return fullPath.Substring(PATH_GUESS.Length, fullPath.Length - PATH_GUESS.Length);
         }
     }
 }

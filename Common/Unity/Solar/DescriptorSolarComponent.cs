@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace FreeUniverse.Common.Unity.Solar
 {
-    [FieldCopyReminder(typeof(ArchSolarComponent))]
+    [FieldCopyTarget(typeof(ArchSolarComponent))]
     public sealed class DescriptorSolarComponent : EditableArchDescriptor
     {
         [FieldCopy]
