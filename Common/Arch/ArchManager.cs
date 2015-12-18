@@ -60,14 +60,14 @@ namespace FreeUniverse.Common.Arch
 
         private void ComputeIndices()
         {
-            uint index = 0;
+            int index = 0;
 
             index = SetIndices<ArchSolar>(index, solars);
         }
 
-        private uint SetIndices<T>(uint baseIndex, Dictionary<ulong, T> arches) where T : ArchObject
+        private int SetIndices<T>(int baseIndex, Dictionary<ulong, T> arches) where T : ArchObject
         {
-            uint currentIndex = baseIndex;
+            int currentIndex = baseIndex;
 
             foreach (KeyValuePair<ulong, T> kp in arches)
             {

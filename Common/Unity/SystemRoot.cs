@@ -38,7 +38,8 @@ namespace FreeUniverse.Common.Unity
                         continue;
 
                     ArchSystemEntity entity = new ArchSystemEntity();
-                    entity.solarArch = Hash.FromString64(solar.nickname);
+                    entity.solarName = tr.gameObject.name;
+                    entity.solarArch = solar.nickname;
                     entity.solarTransform = new ArchTransform(tr.gameObject.transform);
 
                     systemEntities.Add(entity);

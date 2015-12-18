@@ -45,7 +45,8 @@ namespace FreeUniverse.Common.Arch
 
     public sealed class ArchSystemEntity 
     {
-        public ulong solarArch { get; set; }
+        public string solarName { get; set; }
+        public string solarArch { get; set; }
         public ArchTransform solarTransform { get; set; }
     }
 
