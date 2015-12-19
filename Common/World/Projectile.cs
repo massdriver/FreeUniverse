@@ -6,6 +6,8 @@ using System.Text;
 
 namespace FreeUniverse.Common.World
 {
+    
+
     public class Projectile
     {
         public ArchProjectile arch { get; set; }
@@ -78,6 +80,11 @@ namespace FreeUniverse.Common.World
         public Projectile Instantiate(int archIndex)
         {
             return GetPool(archIndex).Instantiate();
+        }
+
+        public Projectile Instantiate(ArchProjectile arch)
+        {
+            return GetPool(arch.index).Instantiate();
         }
 
         public void Dispose(Projectile projectile)

@@ -161,6 +161,7 @@
     <Compile Include="World\Base.cs" />
     <Compile Include="World\HumanInputController.cs" />
     <Compile Include="World\Market.cs" />
+    <Compile Include="World\ObjectPool.cs" />
     <Compile Include="World\Projectile.cs" />
     <Compile Include="World\SolarComponent.cs" />
     <Compile Include="World\Solar.cs" />
