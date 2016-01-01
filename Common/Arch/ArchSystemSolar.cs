@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace FreeUniverse.Common.Unity.Solar
+namespace FreeUniverse.Common.Arch
 {
-    public sealed class PropertyShield : ComponentProperty
+    public class ArchSystemSolar : ArchObject
     {
     }
 }

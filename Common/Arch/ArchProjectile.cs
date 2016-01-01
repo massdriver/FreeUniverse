@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FreeUniverse.Common.Arch
 {
-    public class ArchProjectile : ArchObject
+    public sealed class ArchProjectile : ArchObject
     {
     }
 }

@@ -1,28 +1,33 @@
-﻿using FreeUniverse.Common.Unity.Solar;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace FreeUniverse.Common.Arch
 {
-    public class ArchSolarComponentProperty
+    public class ArchSolarComponentProperty : ArchObject
     {
-        [FieldCopy]
         public float mass { get; set; }
-        [FieldCopy]
         public bool swapable { get; set; }
 
-        public static T Convert<D, T>(D desc)
-            where T : ArchSolarComponentProperty, new()
-            where D : ComponentProperty
+        public override void ReadHeader(INIReaderHeader header)
         {
-            return FieldCopySerializer<D, T>.CopyValuesByNames(desc, new T()) as T;
+            foreach (INIReaderParameter p in header.parameters)
+                ReadParameter(p);
         }
 
-        public T Cast<T>() where T : ArchSolarComponentProperty
+        public override void ReadParameter(INIReaderParameter parameter)
         {
-            return this as T;
+            base.ReadParameter(parameter);
+
+            if (parameter.Check("swappable"))
+            {
+                swapable = parameter.GetBool(0);
+            }
+            else if (parameter.Check("mass"))
+            {
+                mass = parameter.GetFloat(0);
+            }
         }
     }
 }

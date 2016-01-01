@@ -66,7 +66,7 @@ namespace FreeUniverse.Common.World
 
         public ObjectPool()
         {
-            projectilePools = new Pool[Arch.ArchManagerIndexed.numProjectiles];
+            projectilePools = new Pool[Arch.ArchManagerIndexed.GetNumArchesOfType<ArchType>()];
         }
 
         public PooledType Instantiate(int archIndex)

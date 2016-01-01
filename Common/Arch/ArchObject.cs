@@ -10,28 +10,10 @@ namespace FreeUniverse.Common.Arch
     {
         public ulong id { get; set; }
         public int index { get; set; } // MH: optimized arch id, globaly unique after all arches loaded
-
-        protected ArchObject SetID(string nickname)
-        {
-            id = Hash.FromString64(nickname);
-            return this;
-        }
-
-        [FieldCopy]
         public string nickname { get; set; }
-        [FieldCopy]
         public string idsInfo { get; set; }
-        [FieldCopy]
         public string idsObjectName { get; set; }
-        [FieldCopy]
         public string idsDescription { get; set; }
-
-        public static T Convert<D, T>(D desc)
-            where T : ArchObject, new()
-            where D : DescriptorArch
-        {
-            return FieldCopySerializer<D, T>.CopyValuesByNames(desc, new T()).SetID(desc.nickname) as T;
-        }
 
         public virtual bool Validate()
         {

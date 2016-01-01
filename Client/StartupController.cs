@@ -25,9 +25,7 @@ namespace FreeUniverse.Client
         void Start()
         {
             FreeUniverse.Common.UI.External.Init();
-
-            ArchManager archManager = new ArchManager();
-            archManager.LoadArchesFromPrefabs();
+            FreeUniverse.Common.Arch.ArchManagerIndexed.LoadArches();
 
             //gameClient = new GameClient();
            // gameClient.Init();

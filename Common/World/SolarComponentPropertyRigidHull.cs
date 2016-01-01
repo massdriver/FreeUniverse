@@ -18,9 +18,9 @@ namespace FreeUniverse.Common.World
         public SolarComponentPropertyRigidHull(SolarComponent component, ArchSolarComponentPropertyRigidHull arch)
             : base(component)
         {
-            this.worldObject = UnityEngine.Object.Instantiate(Resources.Load(arch.assetPath)) as GameObject;
+            //this.worldObject = UnityEngine.Object.Instantiate(Resources.Load(arch.assetPath)) as GameObject;
 
-            Assist.SetLayer(this.worldObject, component.solar.worldController.layer);
+            //Assist.SetLayer(this.worldObject, component.solar.worldController.layer);
         }
     }
 }

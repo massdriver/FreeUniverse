@@ -1,31 +1,39 @@
-﻿using System;
+﻿using FreeUniverse.Common.Shared;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace FreeUniverse.Common.Arch
 {
+
     public sealed class ArchSolarComponentPropertyRigidHull : ArchSolarComponentProperty
     {
-        [FieldCopy]
-        public float linearDrag { get; set; }
+        public ResistanceStats resistanceStats { get; set; }
+        public string prefabPath { get; set; }
 
-        [FieldCopy]
-        public float angularDrag { get; set; }
+        public ArchSolarComponentPropertyRigidHull()
+        {
+            resistanceStats = new ResistanceStats();
+        }
 
-        [FieldCopy]
-        public float hitPoints { get; set; }
+        public override void ReadParameter(INIReaderParameter parameter)
+        {
+            base.ReadParameter(parameter);
 
-        [FieldCopy]
-        public bool staticHull { get; set; }
+            if (parameter.Check("resistance"))
+            {
+                ResistanceStats.ResistanceType resType = ResistanceStats.FromString(parameter.GetString(0));
 
-        [FieldCopy]
-        public bool collideWithWorld { get; set; }
-
-        [FieldCopy]
-        public bool useCustomColliders { get; set; }
-
-        [FieldCopy]
-        public string assetPath { get; set; }
+                if( resType != ResistanceStats.ResistanceType.Null && resType != ResistanceStats.ResistanceType.MaxTypes )
+                {
+                    resistanceStats[resType] = parameter.GetFloat(1);
+                }
+            }
+            else if (parameter.Check("prefab_path"))
+            {
+                prefabPath = parameter.GetString(0);
+            }
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace FreeUniverse.Common.Unity
 {
     public class StarSystemInfo : MonoBehaviour
     {
-        public string name;
+        public string systemName;
         public uint planetCount;
     }
 
@@ -63,7 +63,7 @@ namespace FreeUniverse.Common.Unity
 
                 FastRandom.SetSeed(hid);
                 info.planetCount = FastRandom.Next(8);
-                info.name = starSystemNameGenerator.Generate(FastRandom.Next());
+                info.systemName = starSystemNameGenerator.Generate(FastRandom.Next());
             }
             
         }
@@ -86,7 +86,7 @@ namespace FreeUniverse.Common.Unity
                 {
                     StarSystemInfo info = hit.collider.gameObject.GetComponent<StarSystemInfo>();
 
-                    Debug.Log("system=" + info.name + ", planets=" + info.planetCount);
+                    Debug.Log("system=" + info.systemName + ", planets=" + info.planetCount);
                 }
             }
         }

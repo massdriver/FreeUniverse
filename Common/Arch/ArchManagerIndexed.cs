@@ -20,6 +20,11 @@ namespace FreeUniverse.Common.Arch
             projectiles = new IndexArchStorage<ArchProjectile>();
         }
 
+        public static void LoadArches()
+        {
+            UnityTextAssetArchLoader<ArchSolarComponent>.LoadAll(components, "Arch/Components", "Component");
+        }
+
         public static T GetByIndex<T>(int index) where T : ArchObject
         {
             if (typeof(T) == typeof(ArchSolar))
@@ -37,12 +42,21 @@ namespace FreeUniverse.Common.Arch
             return null;
         }
 
-        public static int numProjectiles
+        public static int GetNumArchesOfType<T>() where T : ArchObject
         {
-            get
-            {
-                return projectiles.Count;
-            }
+            if (typeof(T) == typeof(ArchSolar))
+                return solars.Count;
+            else
+                if (typeof(T) == typeof(ArchSolarComponent))
+                    return components.Count;
+                else
+                    if (typeof(T) == typeof(ArchSystem))
+                        return systems.Count;
+                    else
+                        if (typeof(T) == typeof(ArchProjectile))
+                            return projectiles.Count;
+
+            return 0;
         }
     }
 }
