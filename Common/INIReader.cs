@@ -18,6 +18,26 @@ namespace FreeUniverse.Common
             this.values = values;
         }
 
+        public static bool operator ==(INIReaderParameter param, string s)
+        {
+            return param.nickname.CompareTo(s) == 0;
+        }
+
+        public static bool operator !=(INIReaderParameter param, string s)
+        {
+            return param.nickname.CompareTo(s) != 0;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         public string GetName()
         {
             return values[0];
@@ -26,6 +46,30 @@ namespace FreeUniverse.Common
         public bool Check(string name)
         {
             return nickname.CompareTo(name) == 0;
+        }
+
+        public T Get<T>(int id)
+        {
+            if (typeof(T) == typeof(string))
+                return (T)Convert.ChangeType(GetString(id), typeof(T));
+            else if(typeof(T) == typeof(int))
+                return (T)Convert.ChangeType(GetInt(id), typeof(T));
+            else if (typeof(T) == typeof(uint))
+                return (T)Convert.ChangeType(GetStrkey(id), typeof(T));
+            else if (typeof(T) == typeof(ulong))
+                return (T)Convert.ChangeType(GetStrkey64(id), typeof(T));
+            else if (typeof(T) == typeof(bool))
+                return (T)Convert.ChangeType(GetBool(id), typeof(T));
+            else if (typeof(T) == typeof(float))
+                return (T)Convert.ChangeType(GetFloat(id), typeof(T));
+            else if (typeof(T) == typeof(Vector2))
+                return (T)Convert.ChangeType(GetVector2(id), typeof(T));
+            else if (typeof(T) == typeof(Vector3))
+                return (T)Convert.ChangeType(GetVector3(id), typeof(T));
+            else if (typeof(T) == typeof(Vector4))
+                return (T)Convert.ChangeType(GetVector4(id), typeof(T));
+
+            return default(T);
         }
 
         public string GetString(int id)

@@ -6,7 +6,6 @@ using System.Text;
 
 namespace FreeUniverse.Common.Arch
 {
-
     public sealed class ArchSolarComponentPropertyRigidHull : ArchSolarComponentProperty
     {
         public ResistanceStats resistanceStats { get; set; }
@@ -19,21 +18,17 @@ namespace FreeUniverse.Common.Arch
 
         public override void ReadParameter(INIReaderParameter parameter)
         {
-            base.ReadParameter(parameter);
-
-            if (parameter.Check("resistance"))
+            if (parameter == "resistance")
             {
-                ResistanceStats.ResistanceType resType = ResistanceStats.FromString(parameter.GetString(0));
+                ResistanceStats.ResistanceType resType = ResistanceStats.FromString(parameter.Get<string>(0));
 
-                if( resType != ResistanceStats.ResistanceType.Null && resType != ResistanceStats.ResistanceType.MaxTypes )
-                {
-                    resistanceStats[resType] = parameter.GetFloat(1);
-                }
+                if (resType != ResistanceStats.ResistanceType.Null && resType != ResistanceStats.ResistanceType.MaxTypes)
+                    resistanceStats[resType] = parameter.Get<float>(1);
             }
-            else if (parameter.Check("prefab_path"))
-            {
-                prefabPath = parameter.GetString(0);
-            }
+            else if (parameter == "prefab_path")
+                prefabPath = parameter.Get<string>(0);
+            else
+                base.ReadParameter(parameter);
         }
     }
 }
